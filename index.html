@@ -20,7 +20,7 @@
   <div class="container">
     <div class="layout">
       <div class="header-frame">
-          <h1>My Tasks</h1>
+          <div class="page-title">My Tasks</div>
           <button id="create-button" class="create-button">&plus;</button>
       </div>
 
@@ -40,12 +40,12 @@
       <label class="task-title">Title</label>
       <input id="task-title-input" class="task-title-input" type="text" placeholder="add a title...">
       <label class="task-description" >Description</label>
-      <input id="task-description-input" class="task-description-input" type="text" placeholder="add a description...">
+      <textarea name="task-description" id="task-description-input" class="task-description-input" placeholder="add a description..."></textarea>
     </div>
   </div>
   <div id="overlay">
     
   </div>
 </body>
-<script type="module" src="scripts/index.js"></script>
+<script type="module" src="scripts/app.js"></script>
 </html>
