@@ -1,51 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Meta tags -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Simple Todo List</title>
+  <!-- External CSS -->
   <link rel="stylesheet" href="styles/style.css">
-  <!--fonts-->
-
-  <!--clash display-->
-  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600&display=swap" rel="stylesheet">
-  <!--archivo-->
-  <link href="https://api.fontshare.com/v2/css?f[]=archivo@500&display=swap" rel="stylesheet">
-  <!--libs-->
-
+  <!-- Font Awesome CDN-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Fonts -->
+  <!-- Clash Display font -->
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,400,700,500,600,1,300&display=swap" rel="stylesheet">
+  <!-- Archivo font -->
+  <link href="https://api.fontshare.com/v2/css?f[]=archivo@701,401,900,801,901,700,800,200,201,300,500,501,301,100,1,2,400,600,101,601&display=swap" rel="stylesheet">
+  <!-- Google fonts api-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Poppins font-->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <!-- Fugaz One-->
+  <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap" rel="stylesheet">
+  <!-- External JavaScript library (jQuery) -->
   <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-
 </head>
 <body>
+  <!-- Main container -->
   <div class="container">
     <div class="layout">
+
+      <!-- Layout Header -->
       <div class="header-frame">
-          <div class="page-title">My Tasks</div>
-          <button id="create-button" class="create-button">&plus;</button>
+        <h1 class="page-title">My Tasks</h1>
+        <button id="create-button" class="create-button">&plus;</button> <!-- Unicode icon for creating a new task -->
       </div>
 
-      <div class="task-frame">
+      <!-- Layout Body -->
+      <div class="task-frame-wrapper">
+        <div class="task-frame">
 
+          <!-- Task Card -->
+          <div class="task-card">
+
+            <!-- Task Card Header-->
+            <div class="task-card-header">
+              <h3 class="task-title">Title</h3>
+              <button class="edit-button">&ctdot;</button> <!-- Unicode icon for editing -->
+            </div>
+
+            <!-- Task Card Body -->
+            <div class="task-card-body">
+              <p class="task-discription">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, ab. Dignissimos repellat, sapiente eos perferendis vitae reiciendis recusandae omnis illo excepturi ea quidem ipsum iste? Temporibus culpa dolores nostrum doloremque.</p>
+            </div>
+
+            <!-- Task Card Footer -->
+            <div class="task-card-footer">
+              <div class="task-checkbox-wrapper">
+                <input class="task-checkbox-input" type="checkbox" name="task-done">
+                <label class="task-checkbox-label" for="task-checkbox">Done</label>
+              </div>
+              <span class="task-create">Created at: <time datetime="datetime" class="task-create-date">22/8/2024</time></span>
+            </div>
+
+          </div>
+
+          <!-- Task Card -->
+          <div class="task-card">
+
+            <!-- Task Card Header-->
+            <div class="task-card-header">
+              <h3 class="task-title">Title</h3>
+              <button class="edit-button">&ctdot;</button> <!-- Unicode icon for editing -->
+            </div>
+
+            <!-- Task Card Body -->
+            <div class="task-card-body">
+              <p class="task-discription">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, ab. Dignissimos repellat, sapiente eos perferendis vitae reiciendis recusandae omnis illo excepturi ea quidem ipsum iste? Temporibus culpa dolores nostrum doloremque.</p>
+            </div>
+
+            <!-- Task Card Footer -->
+            <div class="task-card-footer">
+              <div class="task-checkbox-wrapper">
+                <input class="task-checkbox-input" type="checkbox" name="task-done">
+                <label class="task-checkbox-label" for="task-checkbox">Done</label>
+              </div>
+              <span class="task-create">Created at: <time datetime="datetime" class="task-create-date">22/8/2024</time></span>
+            </div>
+
+          </div>
+
+          <!-- Task Card -->
+          <div class="task-card">
+
+            <!-- Task Card Header-->
+            <div class="task-card-header">
+              <h3 class="task-title">Title</h3>
+              <button class="edit-button">&ctdot;</button> <!-- Unicode icon for editing -->
+            </div>
+
+            <!-- Task Card Body -->
+            <div class="task-card-body">
+              <p class="task-discription">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, ab. Dignissimos repellat, sapiente eos perferendis vitae reiciendis recusandae omnis illo excepturi ea quidem ipsum iste? Temporibus culpa dolores nostrum doloremque.</p>
+            </div>
+
+            <!-- Task Card Footer -->
+            <div class="task-card-footer">
+              <div class="task-checkbox-wrapper">
+                <input class="task-checkbox-input" type="checkbox" name="task-done">
+                <label class="task-checkbox-label" for="task-checkbox">Done</label>
+              </div>
+              <span class="task-create">Created at: <time datetime="datetime" class="task-create-date">22/8/2024</time></span>
+            </div>
+
+          </div>
+
+        </div>
       </div>
     </div>
   </div>
 
+  <!-- Task Dialogue -->
   <div class="task-dialogue" id="task-dialogue">
     <div class="modal-header">
       <button id="cancel-button" class="cancel-button">Cancel</button>
       <button id="add-button" class="add-button">Add</button>
     </div>
-
     <div class="modal-body">
-      <label class="task-title">Title</label>
-      <input id="task-title-input" class="task-title-input" type="text" placeholder="add a title...">
-      <label class="task-description" >Description</label>
-      <textarea name="task-description" id="task-description-input" class="task-description-input" placeholder="add a description..."></textarea>
+      <label class="dialogue-task-title">Title</label>
+      <input id="dialogue-task-title-input" class="dialogue-task-title-input" type="text" placeholder="add a title...">
+      <label class="dialogue-task-description" >Description</label>
+      <textarea name="task-description" id="dialogue-task-description-input" class="dialogue-task-description-input" placeholder="add a description..."></textarea>
     </div>
   </div>
-  <div id="overlay">
-    
-  </div>
+
+  <!-- Overlay for modal -->
+  <div id="overlay"></div>
+
+  <!-- External JavaScript file -->
+  <script type="module" src="scripts/app.js"></script>
 </body>
-<script type="module" src="scripts/app.js"></script>
 </html>

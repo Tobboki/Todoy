@@ -1,183 +1,340 @@
-*, *::before, *::after{
+/* Global styles */
+
+/* Set box-sizing to border-box for all elements */
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   font-family: 'Archivo', sans-serif;
 }
 
-:root{
+/* Define root variables for consistent styling */
+:root {
   font-size: 16px;
   --primary-font-family: 'Archivo', sans-serif;
-  --secondary-font-family: 'clash display', sans-serif;                                         
-  --primary-bg: #0b0c0d;
-  --secondary-bg: #97a9c2;
-  --card-bg: #ffffb8;
+  --secondary-font-family: 'clash display', sans-serif;
+  --primary-color: #8b9fbb;                                  
+  --secondary-color: #0b0c0d;
+  --ternary-color: #303030;
+  --shadow-color: #535659;
+  --card-color: #c4bdab;
   --elements-shadow: 0; 
-  --text-color: #000000;
-  --primary-shadow: 4px 4px 0 var(--secondary-bg);
-  --primary-shadow: 4px 4px 0 var(--primary-bg);
-  --primary-border: 2px solid;
-  --primary-border-radius: 8px;
+  --primary-shadow: 6px 6px 0 var(--secondary-color);
+  --primary-border: 4px solid;
+  --primary-radius: 6px;
 }
 
-body{
+/* Body styles */
+
+/* Reset default margin and padding for body */
+body {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100vh;
-  background-color: var(--primary-bg);
-  color: var(--text-color);
+  background-color: var(--primary-color);
+  color: var(--text-color); /* Ensure text color is defined */
 }
 
-body::-webkit-scrollbar{
+/* Customize scrollbar appearance */
+body::-webkit-scrollbar {
   width: 0.5rem;
 }
 
-body::-webkit-scrollbar-thumb{
-  background-color: var(--primary-bg);
+body::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
 }
 
-.container{
+/* Container styles */
+
+/* Position container at the center of the screen */
+.container {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 96%;
-  height: 94vh;
-  padding: 10px;
-  background-color: var(--secondary-bg);
-  border: 2px solid black;
+  width: 98%;
+  min-width: fit-content;
+  height: 96vh;
+  padding: 8px;
+  background-color: var(--primary-color);
+  border: 4px solid var(--secondary-color);
+  border-radius: var(--primary-radius);
 }
 
-.header-frame{
+/* Header section styles */
+
+/* Header frame layout */
+.header-frame {
   width: 100%;
+  height: 40px;
   display: flex;
   align-items: center;
-  align-content: center;
   justify-content: space-between;
-  justify-items: center;
-  padding: 0px 5px 0px 5px;
-  border-bottom: 2px solid black;
+  padding: 0px 10px;
+  border: none;
 }
 
-.create-button{
-  color: var(--text-color);
+/* Create button styling */
+.create-button {
   border: none;
   outline: none;
   background: none;
-  margin: 0;
-  font-size: 3.5rem;
-  text-align: center;
-  transform: translateY(-5px);
+  padding: 0;
+  transform: translateY(-4px);
+  font-size: 3rem;
   cursor: pointer;
 }
 
-.page-title{
-  font-size: 2rem;
+/* Page title styling */
+.page-title {
+  font-size: 1.8rem;
   font-weight: bold;
 }
 
-.task-dialogue{
+/* Body section styles */
+
+/* Task frame wrapper layout */
+.task-frame-wrapper {
+  min-width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Task frame styling */
+.task-frame {
+  width: 98%;
+  max-height: 90%;
+  margin-top: 1.2rem;
+  padding: 16px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  border: 4px solid var(--secondary-color);
+  /* border-radius: 6px; */
+  box-shadow: 6px 6px 0 var(--shadow-color);
+  overflow: scroll;
+}
+
+/* Task card styling */
+.task-card {
+  padding: 6px 12px;
+  border: 4px solid var(--secondary-color);
+  background-color: var(--card-color);
+  border-radius: var(--primary-radius);
+  box-shadow: 4px 4px 0 var(--secondary-color);
+}
+
+/* Task card header styling */
+.task-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 3px solid var(--ternary-color);
+}
+
+/* Task title styling */
+.task-title {
+  font-size: 1.25rem;
+}
+
+/* Edit button styling */
+.edit-button {
+  padding: 0;
+  background: none;
+  font-size: 1.75rem;
+  font-weight: bolder;
+  color: var(--secondary-text-color);
+  display: flex;
+  text-align: center;
+  border:none;
+  cursor: pointer;
+}
+
+/* Task card body styling */
+.task-card-body {
+  max-height: 110px;
+  padding: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+}
+
+/* Task card footer styling */
+.task-card-footer {
+  padding: 8px 0px 0px;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 1.12rem;
+  color: var(--ternary-color);
+}
+
+/* Task checkbox wrapper styling */
+.task-checkbox-wrapper {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Task checkbox input styling */
+.task-checkbox-input {
+  width: 16px;
+  height: 16px;
+  appearance: none;
+  -webkit-appearance: none;
+  display: flex;
+  align-items: center;
+  background-color: var(--card-color);
+  border-radius: none;
+  border: 2px solid var(--secondary-color);
+  cursor: pointer;
+}
+
+/* Task checkbox icon styling */
+.task-checkbox-input::after {
+  display: none;
+  content: "\f00c";
+  font-family: 'Font Awesome 6 Free';
+  font-size: 1.25rem;
+  font-weight: 900;
+}
+
+/* Show checkbox icon when checked */
+.task-checkbox-input:checked::after {
+  display: block;
+}
+
+/* Task create date styling */
+.task-create-date {
+  color: var(--ternary-color);
+}
+
+/* Task dialogue modal styles */
+
+/* Position task dialogue at center of screen */
+.task-dialogue {
   position: fixed;
-  top: 50%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0);
   transition: 200ms ease-in-out;
-  width: 1200px;
+  width: 1000px;
   max-width: 50%;
-  background-color: var(--secondary-bg);
-  border: var(--primary-border) black;
-  border-radius: var(--primary-border-radius);
+  background-color: var(--primary-color);
+  border: var(--primary-border) var(--secondary-color);
+  border-radius: var(--primary-radius);
   z-index: 10;
   padding: 10px;
   box-shadow: var(--primary-shadow);
 }
 
-.task-dialogue.active{
+/* Show task dialogue when active */
+.task-dialogue.active {
   transform: translate(-50%, -50%) scale(1);
 }
 
-.modal-header{
+/* Modal header styling */
+.modal-header {
   padding: 18px 18px 10px 18px;
   display: flex;
   justify-content: space-between;
 }
 
-.add-button{
-  background-color: var(--primary-bg);
+/* Add button styling */
+.add-button {
+  background-color: var(--secondary-color);
   color: whitesmoke;
-  box-shadow: 3px 3px 0 #535659;
+  box-shadow: 3px 3px 0 var(--shadow-color);
   font-size: 18px;
   font-weight: bold;
-  padding: 10px 36px 10px 36px;
+  padding: 10px 32px;
   border: none;
   cursor: pointer;
 }
 
-.add-button:active{
+/* Active state for add button */
+.add-button:active {
   box-shadow: none;
   transform: translateX(4px) translateY(4px);
 }
 
-.cancel-button{
-  background-color: var(--secondary-bg);
+/* Cancel button styling */
+.cancel-button {
+  background-color: var(--primary-color);
   border: none;
-  font-size: 18px;
+  font-size: 1.12rem;
   font-weight: bolder;
-  color: var(--text-color);
+  color: var(--secondary-color);
   cursor: pointer;
 }
 
-.cancel-button:active{
+/* Active state for cancel button */
+.cancel-button:active {
   transform: translateX(1px) translateY(1px);
 }
 
-.modal-body{
+/* Modal body styles */
+.modal-body {
   padding: 18px;
   font-family: var(--secondary-font-family);
   display: flex;
   flex-flow: column;
-  gap: 10px;
 }
 
-.task-title{
-  font-size: 24px;
+/* Dialogue task title styling */
+.dialogue-task-title {
+  font-size: 1.5rem;
   font-weight: bold;
 }
 
-.task-title-input{
+/* Dialogue task title input styling */
+.dialogue-task-title-input {
   width: 100%;
   height: 40px;
   padding: 10px;
+  margin-bottom: 1.2rem;
   outline: none;
-  background-color: #f8f8f8;
+  background-color: #E7E6E4;
   font-weight: bold;
   border: var(--primary-border);
 }
 
-.task-title-input::placeholder{
-  color: #4c4c4c;
+/* Placeholder color for dialogue task title input */
+.dialogue-task-title-input::placeholder {
+  color: var(--ternary-color);
 }
 
-.task-description{
-  font-size: 24px;
+/* Dialogue task description styling */
+.dialogue-task-description {
+  font-size: 1.5rem;
   font-weight: bold;
 }
 
-.task-description-input{
+/* Dialogue task description input styling */
+.dialogue-task-description-input {
   width: 100%;
   height: 160px;
   padding: 10px;
   outline: none;
   font-weight: bold;
-  background-color: #f8f8f8;
+  background-color: #E7E6E4;
   border: var(--primary-border);
 }
 
-.task-description-input::placeholder{
-  color: #4c4c4c;
+/* Placeholder color for dialogue task description input */
+.dialogue-task-description-input::placeholder {
+  color: var(--ternary-color);
 }
 
-#overlay{
+/* Overlay styles */
+
+/* Overlay for modal background */
+#overlay {
   position: fixed;
   opacity: 0;
   transition: 200ms ease-in-out;
@@ -189,7 +346,8 @@ body::-webkit-scrollbar-thumb{
   pointer-events: none;
 }
 
-#overlay.active{
+/* Show overlay when active */
+#overlay.active {
   opacity: 1;
   pointer-events: all;
 }
