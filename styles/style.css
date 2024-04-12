@@ -12,15 +12,17 @@
 :root {
   font-size: 16px;
   --primary-padding: 1rem;
+  --secondary-padding: 10px;
   --secondary-padding: 0.5rem;
   --primary-font-family: 'Archivo', sans-serif;
-  --secondary-font-family: 'clash display', sans-serif;
   --primary-color: #8b9fbb;                                  
   --secondary-color: #0b0c0d;
   --ternary-color: #303030;
-  --shadow-color: #535659;
-  --card-color: #c4bdab;
+  --shadow-color: #58687f;
+  --card-color: #bbb29a;
+  --text-color: #E7E6E4;
   --primary-shadow: 6px 6px 0 var(--secondary-color);
+  --secondary-shadow: 4px 4px 0 var(--shadow-color);
   --primary-border: 4px solid;
   --primary-radius: 6px;
 }
@@ -32,10 +34,11 @@ body {
   width: 100%;
   display: flex;
   flex-flow: column nowrap;
+  gap: 16px;
   margin: 0;
   padding: var(--primary-padding);
   background-color: var(--primary-color);
-  color: var(--text-color); /* Ensure text color is defined */
+
 }
 
 /* Customize scrollbar appearance */
@@ -47,18 +50,22 @@ body::-webkit-scrollbar-thumb {
   background-color: var(--primary-color);
 }
 
-/* Container styles */
-
-/* Position container at the center of the screen */
-.container {
-  min-width: fit-content;
-  min-height: calc(100vh - (2 * var(--primary-padding)));
-  display: flex;
-  flex-flow: column nowrap;
-  padding: 0px var(--primary-padding);
-  background-color: var(--primary-color);
-  border: 4px solid var(--secondary-color);
+button{
+  padding: calc( 0.5 * --primary-padding) var(--primary-padding);
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  font-size: 1rem;
+  font-weight: bold;
+  user-select: none;
+  border: none;
   border-radius: var(--primary-radius);
+  box-shadow: var(--secondary-shadow);
+  cursor: pointer;
+}
+
+button:active {
+  box-shadow: none;
+  transform: translateX(3px) translateY(3px);
 }
 
 /* Header section styles */
@@ -68,24 +75,25 @@ body::-webkit-scrollbar-thumb {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: none;
 }
 
 /* Create button styling */
-.create-button {
-  border: none;
+.create-task-button {
   outline: none;
-  background: none;
-  padding: 0;
-  transform: translateY(-5px);
-  font-size: 3rem;
+  padding: 8px var(--primary-padding);
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  font-size: 1rem;
+  font-weight: bold;
   user-select: none;
+  border: none;
+  border-radius: var(--primary-radius);
   cursor: pointer;
 }
 
 /* Page title styling */
 .page-title {
-  font-size: 1.8rem;
+  font-size: 1.75rem;
   font-weight: bold;
 }
 
@@ -95,16 +103,19 @@ body::-webkit-scrollbar-thumb {
 .task-frame {
   padding: var(--primary-padding);
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   border: 4px solid var(--secondary-color);
-  /* border-radius: 6px; */
+  border-radius: var(--primary-radius);
   box-shadow: 6px 6px 0 var(--shadow-color);
 }
 
 /* Task card styling */
 .task-card {
   padding: 6px 12px;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 8px;
   border: 4px solid var(--secondary-color);
   background-color: var(--card-color);
   border-radius: var(--primary-radius);
@@ -116,7 +127,7 @@ body::-webkit-scrollbar-thumb {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 3px solid var(--ternary-color);
+  border-bottom: 3px solid var(--secondary-color);
 }
 
 /* Task title styling */
@@ -128,20 +139,21 @@ body::-webkit-scrollbar-thumb {
 .edit-button {
   padding: 0;
   background: none;
-  font-size: 1.75rem;
-  font-weight: bolder;
+  font-size: 2rem;
   color: var(--secondary-text-color);
-  display: flex;
-  text-align: center;
-  border:none;
-  user-select: none;
-  cursor: pointer;
+  transition: 50ms ease-in-out;
+  border: none;
+  box-shadow: none;
+}
+
+.edit-button:active{
+  transform: scale(0.9);
 }
 
 /* Task card body styling */
 .task-card-body {
-  max-height: 110px;
-  padding: 6px;
+  max-height: 120px;
+  padding: 0px 8px;
   font-size: 1rem;
   font-weight: 500;
   display: -webkit-box;
@@ -152,12 +164,11 @@ body::-webkit-scrollbar-thumb {
 
 /* Task card footer styling */
 .task-card-footer {
-  padding-top: var(--secondary-padding);
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  font-weight: 600;
-  font-size: 1.12rem;
-  color: var(--ternary-color);
+  font-size: 1rem;
+  font-weight: 500;
   white-space: nowrap;
 }
 
@@ -171,16 +182,20 @@ body::-webkit-scrollbar-thumb {
 
 /* Task checkbox input styling */
 .task-checkbox-input {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   appearance: none;
   -webkit-appearance: none;
   display: flex;
   align-items: center;
   background-color: var(--card-color);
-  border-radius: none;
   border: 2px solid var(--secondary-color);
+  border-radius: none;
   cursor: pointer;
+}
+
+.task-checkbox-label{
+  font-size: 1.125rem;
 }
 
 /* Task checkbox icon styling */
@@ -188,14 +203,14 @@ body::-webkit-scrollbar-thumb {
   display: none;
   content: "\f00c";
   font-family: 'Font Awesome 6 Free';
-  font-size: 1.25rem;
+  font-size: 0.75rem;
   font-weight: 900;
-  transform: translateX(-2px);
 }
 
 /* Show checkbox icon when checked */
 .task-checkbox-input:checked::after {
   display: block;
+  transition: 100ms ease-in-out;
 }
 
 /* Task create date styling */
@@ -208,22 +223,17 @@ body::-webkit-scrollbar-thumb {
 /* Position task dialogue at center of screen */
 .task-dialogue {
   width: 50%;
-  position: fixed;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  transition: 200ms ease-in-out;
+  padding: 10px;
   background-color: var(--primary-color);
+  transform: translate(50%, 50%);
+  transition: 200ms ease-in-out;
   border: var(--primary-border) var(--secondary-color);
   border-radius: var(--primary-radius);
-  z-index: 10;
-  padding: 10px;
   box-shadow: var(--primary-shadow);
 }
 
-/* Show task dialogue when active */
-.task-dialogue.active {
-  transform: translate(-50%, -50%) scale(1);
+.task-dialogue::backdrop{
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 /* Modal header styling */
@@ -235,41 +245,20 @@ body::-webkit-scrollbar-thumb {
 
 /* Add button styling */
 .add-button {
-  background-color: var(--secondary-color);
-  color: whitesmoke;
-  box-shadow: 3px 3px 0 var(--shadow-color);
-  font-size: 18px;
-  font-weight: bold;
-  padding: 10px 32px;
-  border: none;
-  cursor: pointer;
-}
-
-/* Active state for add button */
-.add-button:active {
-  box-shadow: none;
-  transform: translateX(4px) translateY(4px);
+  padding: 10px calc(2 * var(--primary-padding));
+  transition: 100ms ease-in-out;
 }
 
 /* Cancel button styling */
 .cancel-button {
-  background-color: var(--primary-color);
-  border: none;
-  font-size: 1.12rem;
-  font-weight: bolder;
-  color: var(--secondary-color);
-  cursor: pointer;
-}
-
-/* Active state for cancel button */
-.cancel-button:active {
-  transform: translateX(1px) translateY(1px);
+  padding: 10px calc(var(--primary-padding) + 5px);
+  background-color: #ee273b;
+  transition: 100ms ease-in-out;
 }
 
 /* Modal body styles */
 .modal-body {
-  padding: 18px;
-  font-family: var(--secondary-font-family);
+  padding: 1rem;
   display: flex;
   flex-flow: column;
 }
@@ -285,11 +274,12 @@ body::-webkit-scrollbar-thumb {
   width: 100%;
   height: 40px;
   padding: 10px;
-  margin-bottom: 1.2rem;
-  outline: none;
-  background-color: #E7E6E4;
+  margin-bottom: 1.25rem;
+  background-color: var(--text-color);
   font-weight: bold;
+  outline: none;
   border: var(--primary-border);
+  border-radius: var(--primary-radius);
 }
 
 /* Placeholder color for dialogue task title input */
@@ -310,34 +300,14 @@ body::-webkit-scrollbar-thumb {
   padding: 10px;
   outline: none;
   font-weight: bold;
-  background-color: #E7E6E4;
+  background-color: var(--text-color);
   border: var(--primary-border);
+  border-radius: var(--primary-radius);
 }
 
 /* Placeholder color for dialogue task description input */
 .dialogue-task-description-input::placeholder {
   color: var(--ternary-color);
-}
-
-/* Overlay styles */
-
-/* Overlay for modal background */
-#overlay {
-  position: fixed;
-  opacity: 0;
-  transition: 200ms ease-in-out;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  pointer-events: none;
-}
-
-/* Show overlay when active */
-#overlay.active {
-  opacity: 1;
-  pointer-events: all;
 }
 
 /* Media Queries for Responsive Design */
