@@ -14,6 +14,11 @@
   <link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,400,700,500,600,1,300&display=swap" rel="stylesheet">
   <!-- Archivo font -->
   <link href="https://api.fontshare.com/v2/css?f[]=archivo@701,401,900,801,901,700,800,200,201,300,500,501,301,100,1,2,400,600,101,601&display=swap" rel="stylesheet">
+  <!-- Google Icons-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0" />
+  <!-- Calendar Icon-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,500,0,0" /> <!-- edit icon-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0" /> <!--delete icon-->
 </head>
 <!--Notes: protect against iframe-->
 <body>
@@ -24,109 +29,7 @@
       </header>
 
       <!-- Layout Body -->
-      <main class="task-frame">
-        
-        <!-- Task Card -->
-        <div class="task-card">
-
-          <!-- Task Card Header-->
-          <div class="task-card-header">
-            <h3 class="task-title">Title</h3>
-            <button class="edit-button" type="button">&ctdot;</button> <!-- 3 centered ellipsis unicode icon for editing -->
-          </div>
-
-          <!-- Task Card Body -->
-          <div class="task-card-body">
-            <p class="task-discription">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, ab. Dignissimos repellat, sapiente eos perferendis vitae reiciendis recusandae omnis illo excepturi ea quidem ipsum iste? Temporibus culpa dolores nostrum doloremque.</p>
-          </div>
-
-          <!-- Task Card Footer -->
-          <div class="task-card-footer">
-            <div class="task-checkbox-wrapper">
-              <input class="task-checkbox-input" id="task-checkbox-input" type="checkbox" name="task-done">
-              <label class="task-checkbox-label" for="task-checkbox-input">Done</label>
-            </div>
-            <span class="task-create">Created at: <time datetime="datetime" class="task-create-date">22/8/2024</time></span>
-          </div>
-
-        </div>
-
-        <!-- Task Card -->
-        <div class="task-card">
-
-          <!-- Task Card Header-->
-          <div class="task-card-header">
-            <h3 class="task-title">Title</h3>
-            <button class="edit-button" type="button">&ctdot;</button> <!-- 3 centered ellipsis unicode icon for editing -->
-          </div>
-
-          <!-- Task Card Body -->
-          <div class="task-card-body">
-            <p class="task-discription">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, ab. Dignissimos repellat, sapiente eos perferendis vitae reiciendis recusandae omnis illo excepturi ea quidem ipsum iste? Temporibus culpa dolores nostrum doloremque.</p>
-          </div>
-
-          <!-- Task Card Footer -->
-          <div class="task-card-footer">
-            <div class="task-checkbox-wrapper">
-              <input class="task-checkbox-input" id="task-checkbox-input" type="checkbox" name="task-done">
-              <label class="task-checkbox-label" for="task-checkbox-input">Done</label>
-            </div>
-            <span class="task-create">Created at: <time datetime="datetime" class="task-create-date">22/8/2024</time></span>
-          </div>
-
-        </div>
-
-        <!-- Task Card -->
-        <div class="task-card">
-
-          <!-- Task Card Header-->
-          <div class="task-card-header">
-            <h3 class="task-title">Title</h3>
-            <button class="edit-button" type="button">&ctdot;</button> <!-- Unicode icon for editing -->
-          </div>
-
-          <!-- Task Card Body -->
-          <div class="task-card-body">
-            <p class="task-discription">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, ab. Dignissimos repellat, sapiente eos perferendis vitae reiciendis recusandae omnis illo excepturi ea quidem ipsum iste? Temporibus culpa dolores nostrum doloremque.</p>
-          </div>
-
-          <!-- Task Card Footer -->
-          <div class="task-card-footer">
-            <div class="task-checkbox-wrapper">
-              <input class="task-checkbox-input" id="task-checkbox-input" type="checkbox" name="task-done">
-              <label class="task-checkbox-label" for="task-checkbox-input">Done</label>
-            </div>
-            <span class="task-create">Created at: <time datetime="datetime" class="task-create-date">22/8/2024</time></span>
-          </div>
-
-        </div>
-
-        <!-- Task Card -->
-        <div class="task-card">
-
-          <!-- Task Card Header-->
-          <div class="task-card-header">
-            <h3 class="task-title">Title</h3>
-            <button class="edit-button" type="button">&ctdot;</button> <!-- Unicode icon for editing -->
-          </div>
-
-          <!-- Task Card Body -->
-          <div class="task-card-body">
-            <p class="task-discription">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, ab. Dignissimos repellat, sapiente eos perferendis vitae reiciendis recusandae omnis illo excepturi ea quidem ipsum iste? Temporibus culpa dolores nostrum doloremque.</p>
-          </div>
-
-          <!-- Task Card Footer -->
-          <div class="task-card-footer">
-            <div class="task-checkbox-wrapper">
-              <input class="task-checkbox-input" id="task-checkbox-input" type="checkbox" name="task-done">
-              <label class="task-checkbox-label" for="task-checkbox-input">Done</label>
-            </div>
-            <span class="task-create">Created at: <time datetime="datetime" class="task-create-date">22/8/2024</time></span>
-          </div>
-
-        </div>
-
-      </main>
+      <main class="task-frame" id="task-frame"></main>
 
   <!-- Task Dialogue -->
   <dialog class="task-dialogue" id="task-dialogue">
@@ -148,6 +51,7 @@
   </dialog>
 
   <!-- External JavaScript file -->
-  <script type="module" src="scripts/app.js"></script>
+  <script type="module" src="scripts/data/tasks.js"></script>
+  <script type="module" src="scripts/app.js" defer></script>
 </body>
 </html>

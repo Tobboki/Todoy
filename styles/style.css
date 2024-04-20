@@ -11,19 +11,18 @@
 /* Define root variables for consistent styling */
 :root {
   font-size: 16px;
-  --primary-padding: 1rem;
-  --secondary-padding: 10px;
-  --secondary-padding: 0.5rem;
+  --primary-padding: 16px;
+  --secondary-padding: 8px;
   --primary-font-family: 'Archivo', sans-serif;
   --primary-color: #8b9fbb;                                  
   --secondary-color: #0b0c0d;
   --ternary-color: #303030;
-  --shadow-color: #58687f;
+  --shadow-color: rgba(0, 0, 0, 0.3);
   --card-color: #bbb29a;
   --text-color: #E7E6E4;
-  --primary-shadow: 6px 6px 0 var(--secondary-color);
-  --secondary-shadow: 4px 4px 0 var(--shadow-color);
-  --primary-border: 4px solid;
+  --primary-shadow: 6px 6px 0 var(--shadow-color);
+  --secondary-shadow: 4px 4px 2px var(--shadow-color);
+  --primary-border: 4px solid var(--secondary-color);
   --primary-radius: 6px;
 }
 
@@ -80,7 +79,7 @@ button:active {
 /* Create button styling */
 .create-task-button {
   outline: none;
-  padding: 8px var(--primary-padding);
+  padding: var(--secondary-padding) var(--primary-padding);
   background-color: var(--secondary-color);
   color: var(--text-color);
   font-size: 1rem;
@@ -101,9 +100,10 @@ button:active {
 
 /* Task frame styling */
 .task-frame {
+  min-width: fit-content;
   padding: var(--primary-padding);
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 20px;
   border: 4px solid var(--secondary-color);
   border-radius: var(--primary-radius);
@@ -135,8 +135,8 @@ button:active {
   font-size: 1.25rem;
 }
 
-/* Edit button styling */
-.edit-button {
+/* Task options button styling */
+.task-options-button {
   padding: 0;
   background: none;
   font-size: 2rem;
@@ -146,8 +146,46 @@ button:active {
   box-shadow: none;
 }
 
-.edit-button:active{
+.task-options-button:active{
   transform: scale(0.9);
+}
+
+/* Style for the dropdown content */
+
+.task-options-dropdown{
+  position: relative;
+}
+
+.task-options-dropdown-content {
+  position: absolute;
+  min-width: 140px;
+  padding: 8px;
+  display: none;
+  background-color: #E7E6E4;
+  border: var(--primary-border);
+  border-radius: var(--primary-radius);
+  box-shadow: var(--primary-shadow);
+  z-index: 1;
+}
+
+.task-options-dropdown-content.dropdown-content-show{
+  display: block;
+}
+
+/* Style for dropdown links */
+.task-options-dropdown-content button{
+  width: 100%;
+  display: flex;
+  gap: 4px;
+  padding: 12px 16px;
+  color: black;
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+
+.task-options-dropdown-content button:hover{
+  background-color: #d1d0ce;
 }
 
 /* Task card body styling */
@@ -167,9 +205,10 @@ button:active {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 1.125rem;
+  font-weight: 600;
   white-space: nowrap;
+  color: var(--ternary-color);
 }
 
 /* Task checkbox wrapper styling */
@@ -182,20 +221,16 @@ button:active {
 
 /* Task checkbox input styling */
 .task-checkbox-input {
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   appearance: none;
   -webkit-appearance: none;
   display: flex;
   align-items: center;
   background-color: var(--card-color);
-  border: 2px solid var(--secondary-color);
+  border: 2px solid var(--ternary-color);
   border-radius: none;
   cursor: pointer;
-}
-
-.task-checkbox-label{
-  font-size: 1.125rem;
 }
 
 /* Task checkbox icon styling */
@@ -203,8 +238,9 @@ button:active {
   display: none;
   content: "\f00c";
   font-family: 'Font Awesome 6 Free';
-  font-size: 0.75rem;
+  font-size: 1rem;
   font-weight: 900;
+  line-height: 0;
 }
 
 /* Show checkbox icon when checked */
@@ -213,20 +249,24 @@ button:active {
   transition: 100ms ease-in-out;
 }
 
-/* Task create date styling */
-.task-create-date {
-  color: var(--ternary-color);
+.task-create-section{
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 4px;
 }
 
-/* Task dialogue modal styles */
+/* -- Task dialogue modal styles -- */
 
 /* Position task dialogue at center of screen */
 .task-dialogue {
-  width: 50%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: 200ms ease-in-out;
   padding: 10px;
   background-color: var(--primary-color);
-  transform: translate(50%, 50%);
-  transition: 200ms ease-in-out;
   border: var(--primary-border) var(--secondary-color);
   border-radius: var(--primary-radius);
   box-shadow: var(--primary-shadow);
@@ -236,7 +276,7 @@ button:active {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-/* Modal header styling */
+/* Modal header styling  fix it*/
 .modal-header {
   padding: 18px 18px 10px 18px;
   display: flex;
@@ -252,7 +292,7 @@ button:active {
 /* Cancel button styling */
 .cancel-button {
   padding: 10px calc(var(--primary-padding) + 5px);
-  background-color: #ee273b;
+  background-color: #e72f41;
   transition: 100ms ease-in-out;
 }
 
