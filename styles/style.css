@@ -55,6 +55,7 @@ button{
   color: var(--text-color);
   font-size: 1rem;
   font-weight: bold;
+  transition: 100ms ease-in-out;
   user-select: none;
   border: none;
   border-radius: var(--primary-radius);
@@ -96,9 +97,9 @@ button:active {
   font-weight: bold;
 }
 
-/* Body section styles */
+/* *Body section styles* */
 
-/* Task frame styling */
+/* *Task frame styling* */
 .task-frame {
   min-width: fit-content;
   padding: var(--primary-padding);
@@ -135,13 +136,12 @@ button:active {
   font-size: 1.25rem;
 }
 
-/* Task options button styling */
+/* *Task options button styling* */
 .task-options-button {
   padding: 0;
   background: none;
   font-size: 2rem;
-  color: var(--secondary-text-color);
-  transition: 50ms ease-in-out;
+  color: black;
   border: none;
   box-shadow: none;
 }
@@ -159,7 +159,7 @@ button:active {
 .task-options-dropdown-content {
   position: absolute;
   min-width: 140px;
-  padding: 8px;
+  padding: var(--secondary-padding);
   display: none;
   background-color: #E7E6E4;
   transition: 50ms ease-in-out;
@@ -195,10 +195,9 @@ button:active {
 .task-options-dropdown-content button.task-remove-button:hover{
   color: var(--text-color);
   background-color: #e72f41;
-  transition: 100ms ease-in-out;
 }
 
-/* Task card body styling */
+/* *Task card body styling* */
 .task-card-body {
   max-height: 120px;
   padding: 0px 8px;
@@ -266,9 +265,12 @@ button:active {
   gap: 4px;
 }
 
+.material-symbols-outlined{
+  user-select: none;
+}
+
 /* *Task dialogue modal styles* */
 
-/* Position task dialogue at center of screen */
 .task-dialogue {
   position: fixed;
   top: 50%;
@@ -296,21 +298,19 @@ button:active {
 /* Add button styling */
 .task-dialogue-add-button {
   padding: 12px calc(2 * var(--primary-padding));
-  transition: 100ms ease-in-out;
 }
 
 /* Cancel button styling */
 .task-dialogue-cancel-button {
   padding: 12px calc(var(--primary-padding) + 5px);
   background-color: #e72f41;
-  transition: 100ms ease-in-out;
 }
 
 /* Task dialogue body styles */
 .task-dialogue-body {
   padding: var(--primary-padding);
   display: flex;
-  flex-flow: column;
+  flex-flow: column nowrap;
 }
 
 /* Dialogue task title styling */
@@ -358,6 +358,3 @@ button:active {
 .dialogue-task-description-input::placeholder {
   color: var(--ternary-color);
 }
-
-/* Media Queries for Responsive Design */
-

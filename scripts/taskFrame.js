@@ -120,11 +120,20 @@ export function toggleTaskOptionsDropdown(dropdownId) {
 
 
 
-// document.addEventListener('click', e => {
-//   const dropdown = document.getElementById('task-options-dropdown-content');
-//   if (!e.target.closest('.task-options-dropdown') && !e.target.matches('.task-options-button')) {
-//     dropdown.classList.remove('dropdown-content-show');
-//   }
+// const taskOptionsDropdowns = document.querySelectorAll('.task-options-dropdown-content');
+// taskOptionsDropdowns.forEach(dropdown => {
+//   dropdown.addEventListener("click", e => {
+//     const taskOptionsDropdownsDimensions = taskOptionsDropdowns.getBoundingClientRect()
+//     if (
+//       e.clientX < taskFrameDimensions.left ||
+//       e.clientX > taskFrameDimensions.right ||
+//       e.clientY < taskFrameDimensions.top ||
+//       e.clientY > taskFrameDimensions.bottom
+//     ) {
+//       const dropdownId = document.querySelector('.dropdown-content-show')
+//       toggleTaskOptionsDropdown(dropdownId);
+//     }
+//   });
 // });
 
 // *Task dialogue section*

@@ -1,4 +1,3 @@
-//importing modules
 import { renderTasks, toggleTaskOptionsDropdown, openDialogue } from "./taskFrame.js";
 
 //task frame section
