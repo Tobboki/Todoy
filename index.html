@@ -1,49 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Meta tags -->
+
+  <!-- *Meta tags* -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Todo</title>
-  <!-- External CSS -->
+
+  <!-- *External CSS* -->
   <link rel="stylesheet" href="styles/style.css">
-  <!-- Font Awesome CDN-->
+
+  <!-- *Fonts* -->
+
+  <!-- *Font Awesome CDN* -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <!-- Fonts -->
   <!-- Clash Display font -->
   <link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,400,700,500,600,1,300&display=swap" rel="stylesheet">
   <!-- Archivo font -->
   <link href="https://api.fontshare.com/v2/css?f[]=archivo@701,401,900,801,901,700,800,200,201,300,500,501,301,100,1,2,400,600,101,601&display=swap" rel="stylesheet">
-  <!-- Google Icons-->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0" />
+
+  <!-- *Google Material Icons* -->
+
   <!-- Calendar Icon-->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,500,0,0" /> <!-- edit icon-->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0" /> <!--delete icon-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0" />
+  <!-- edit icon-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,500,0,0" />
+  <!--delete icon-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0" />
+
 </head>
-<!--Notes: protect against iframe-->
+
+<!-- !Notes: protect against iframe -->
+
 <body>
-      <!-- Layout Header -->
-      <header class="header-frame">
-        <h1 class="page-title">My Tasks</h1>
-        <button id="create-task-button" class="create-task-button" type="button">add task</button> <!-- Unicode icon for creating a new task -->
+      <!-- Task Frame Header -->
+      <header class="task-frame-header">
+        <h1 class="task-frame-title">My Tasks</h1>
+        <button id="create-task-button" class="create-task-button" type="button">Add task</button>
       </header>
 
-      <!-- Layout Body -->
+      <!-- Task Frame Body -->
       <main class="task-frame" id="task-frame"></main>
 
   <!-- Task Dialogue -->
   <dialog class="task-dialogue" id="task-dialogue">
 
-    <div class="modal-header">
-      <button id="cancel-button" class="cancel-button" type="button">Cancel</button>
-      <button id="add-button" class="add-button" type="button">Add</button>
+    <div class="task-dialogue-header">
+      <button id="task-dialogue-cancel-button" class="task-dialogue-cancel-button" type="button">Cancel</button>
+      <button id="task-dialogue-add-button" class="task-dialogue-add-button" type="button">Add</button>
     </div>
 
-    <div class="modal-body">
-      <form> <!-- fix action-->
-        <label for="dialogue-task-title-input" class="dialogue-task-title">Title</label>
+    <div class="task-dialogue-body">
+      <form> <!-- !fix action-->
+        <label for="dialogue-task-title-input" class="dialogue-task-title-label">Title</label>
         <input id="dialogue-task-title-input" class="dialogue-task-title-input" type="text" placeholder="add a title...">
-        <label for="dialogue-task-description-input" class="dialogue-task-description">Description</label>
+        <label for="dialogue-task-description-input" class="dialogue-task-description-label">Description</label>
         <textarea name="task-description" id="dialogue-task-description-input" class="dialogue-task-description-input" placeholder="add a description..."></textarea>
       </form>
     </div>
@@ -51,7 +62,7 @@
   </dialog>
 
   <!-- External JavaScript file -->
-  <script type="module" src="scripts/data/tasks.js"></script>
+  <script type="module" src="scripts/tasks.js" defer></script>
   <script type="module" src="scripts/app.js" defer></script>
 </body>
 </html>

@@ -50,7 +50,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 button{
-  padding: calc( 0.5 * --primary-padding) var(--primary-padding);
+  padding: 12px var(--primary-padding);
   background-color: var(--secondary-color);
   color: var(--text-color);
   font-size: 1rem;
@@ -64,13 +64,13 @@ button{
 
 button:active {
   box-shadow: none;
-  transform: translateX(3px) translateY(3px);
+  transform: translateX(4px) translateY(4px);
 }
 
 /* Header section styles */
 
 /* Header frame layout */
-.header-frame {
+.task-frame-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -91,7 +91,7 @@ button:active {
 }
 
 /* Page title styling */
-.page-title {
+.task-frame-title {
   font-size: 1.75rem;
   font-weight: bold;
 }
@@ -162,6 +162,7 @@ button:active {
   padding: 8px;
   display: none;
   background-color: #E7E6E4;
+  transition: 50ms ease-in-out;
   border: var(--primary-border);
   border-radius: var(--primary-radius);
   box-shadow: var(--primary-shadow);
@@ -169,7 +170,9 @@ button:active {
 }
 
 .task-options-dropdown-content.dropdown-content-show{
-  display: block;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 8px;
 }
 
 /* Style for dropdown links */
@@ -180,12 +183,19 @@ button:active {
   padding: 12px 16px;
   color: black;
   background: none;
+  background-color: #cdcdcd;
   border: none;
   box-shadow: none;
 }
 
-.task-options-dropdown-content button:hover{
-  background-color: #d1d0ce;
+.task-options-dropdown-content button:active{
+  transform: scale(0.9);
+}
+
+.task-options-dropdown-content button.task-remove-button:hover{
+  color: var(--text-color);
+  background-color: #e72f41;
+  transition: 100ms ease-in-out;
 }
 
 /* Task card body styling */
@@ -256,7 +266,7 @@ button:active {
   gap: 4px;
 }
 
-/* -- Task dialogue modal styles -- */
+/* *Task dialogue modal styles* */
 
 /* Position task dialogue at center of screen */
 .task-dialogue {
@@ -264,10 +274,10 @@ button:active {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  transition: 200ms ease-in-out;
-  padding: 10px;
+  padding: var(--primary-padding);
   background-color: var(--primary-color);
-  border: var(--primary-border) var(--secondary-color);
+  transition: 200ms ease-in-out;
+  border: var(--primary-border);
   border-radius: var(--primary-radius);
   box-shadow: var(--primary-shadow);
 }
@@ -276,35 +286,35 @@ button:active {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-/* Modal header styling  fix it*/
-.modal-header {
-  padding: 18px 18px 10px 18px;
+/* Task dialogue header styling  */
+.task-dialogue-header {
   display: flex;
   justify-content: space-between;
+  padding: var(--primary-padding);
 }
 
 /* Add button styling */
-.add-button {
-  padding: 10px calc(2 * var(--primary-padding));
+.task-dialogue-add-button {
+  padding: 12px calc(2 * var(--primary-padding));
   transition: 100ms ease-in-out;
 }
 
 /* Cancel button styling */
-.cancel-button {
-  padding: 10px calc(var(--primary-padding) + 5px);
+.task-dialogue-cancel-button {
+  padding: 12px calc(var(--primary-padding) + 5px);
   background-color: #e72f41;
   transition: 100ms ease-in-out;
 }
 
-/* Modal body styles */
-.modal-body {
-  padding: 1rem;
+/* Task dialogue body styles */
+.task-dialogue-body {
+  padding: var(--primary-padding);
   display: flex;
   flex-flow: column;
 }
 
 /* Dialogue task title styling */
-.dialogue-task-title {
+.dialogue-task-title-label {
   font-size: 1.5rem;
   font-weight: bold;
 }
@@ -313,8 +323,7 @@ button:active {
 .dialogue-task-title-input {
   width: 100%;
   height: 40px;
-  padding: 10px;
-  margin-bottom: 1.25rem;
+  padding: var(--primary-padding);
   background-color: var(--text-color);
   font-weight: bold;
   outline: none;
@@ -328,7 +337,7 @@ button:active {
 }
 
 /* Dialogue task description styling */
-.dialogue-task-description {
+.dialogue-task-description-label {
   font-size: 1.5rem;
   font-weight: bold;
 }

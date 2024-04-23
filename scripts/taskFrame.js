@@ -24,19 +24,6 @@ export const tasks = [{
   'isDone': false
 }];
 
-export function toggleTaskOptionsDropdown(dropdownId) {
-  const dropdown = document.getElementById(dropdownId);
-
-  dropdown.classList.toggle('dropdown-content-show');
-};
-
-// document.addEventListener('click', e => {
-//   const dropdown = document.getElementById('task-options-dropdown-content');
-//   if (!e.target.closest('.task-options-dropdown') && !e.target.matches('.task-options-button')) {
-//     dropdown.classList.remove('dropdown-content-show');
-//   }
-// });
-
 export function renderTasks() {
   const taskFrame = document.getElementById('task-frame');
   taskFrame.innerHTML = '';
@@ -118,12 +105,29 @@ export function addTask() {
 };
 
 export function removeTask(taskId) {
-  tasks = tasks.filter(task => task.id !== taskId);
+  tasks.pop(taskId);
 
   renderTasks();
 };
 
-// Task dialogue section
+// *task options dropdown section*
+
+export function toggleTaskOptionsDropdown(dropdownId) {
+  const dropdown = document.getElementById(dropdownId);
+
+  dropdown.classList.toggle('dropdown-content-show');
+};
+
+
+
+// document.addEventListener('click', e => {
+//   const dropdown = document.getElementById('task-options-dropdown-content');
+//   if (!e.target.closest('.task-options-dropdown') && !e.target.matches('.task-options-button')) {
+//     dropdown.classList.remove('dropdown-content-show');
+//   }
+// });
+
+// *Task dialogue section*
 export const taskDialogue = document.getElementById('task-dialogue');
 
 export function openDialogue() {
@@ -135,8 +139,32 @@ export function closeDialogue() {
 };
 
 export function getTaskInfo(){
-  taskTitle = document.getElementById('dialogue-task-title-input').value();
-  taskDescription = document.getElementById('dialogue-task-description-input').value();
+  const taskTitle = document.getElementById('dialogue-task-title-input').value;
+  const taskDescription = document.getElementById('dialogue-task-description-input').value;
 
   return taskTitle, taskDescription;
 } ;
+
+//add button functionality
+document.getElementById('task-dialogue-add-button').addEventListener('click', function() {
+  closeDialogue();
+  addTask();
+});
+
+//cancel button functionality
+document.getElementById('task-dialogue-cancel-button').addEventListener('click', function() {
+  closeDialogue();
+});
+
+//close taskDialogue when clicked outside of it (overlay effect)
+taskDialogue.addEventListener("click", e => {
+  const dialogDimensions = taskDialogue.getBoundingClientRect()
+  if (
+    e.clientX < dialogDimensions.left ||
+    e.clientX > dialogDimensions.right ||
+    e.clientY < dialogDimensions.top ||
+    e.clientY > dialogDimensions.bottom
+  ) {
+    closeDialogue();
+  }
+});
