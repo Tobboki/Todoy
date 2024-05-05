@@ -29,10 +29,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0" />
 
 </head>
-
-<!-- !Notes: protect against iframe -->
-
 <body>
+
       <!-- Task Frame Header -->
       <header class="task-frame-header">
         <h1 class="task-frame-title">My Tasks</h1>
@@ -47,22 +45,22 @@
 
     <div class="task-dialogue-header">
       <button id="task-dialogue-cancel-button" class="task-dialogue-cancel-button" type="button">Cancel</button>
-      <button id="task-dialogue-add-button" class="task-dialogue-add-button" type="button">Add</button>
+      <button id="task-dialogue-add-button" class="task-dialogue-add-button" type="submit">Add</button>
     </div>
 
-    <div class="task-dialogue-body">
-      <form> <!-- !fix action-->
+    <form class="task-dialogue-body"><!-- !fix action-->
         <label for="dialogue-task-title-input" class="dialogue-task-title-label">Title</label>
-        <input id="dialogue-task-title-input" class="dialogue-task-title-input" type="text" placeholder="add a title...">
+        <input id="dialogue-task-title-input" class="dialogue-task-title-input" type="text" placeholder="add a title..." autocomplete="off" required>
         <label for="dialogue-task-description-input" class="dialogue-task-description-label">Description</label>
-        <textarea name="task-description" id="dialogue-task-description-input" class="dialogue-task-description-input" placeholder="add a description..."></textarea>
-      </form>
-    </div>
+        <textarea name="task-description" id="dialogue-task-description-input" class="dialogue-task-description-input" placeholder="add a description..." required></textarea>
+        <span class="description-input-char-counter" id="description-input-char-counter"></span>
+    </form>
 
   </dialog>
 
   <!-- External JavaScript file -->
   <script type="module" src="scripts/taskFrame.js" defer></script>
   <script type="module" src="scripts/app.js" defer></script>
+
 </body>
 </html>

@@ -80,7 +80,6 @@ button:active {
 /* Create button styling */
 .create-task-button {
   outline: none;
-  padding: var(--secondary-padding) var(--primary-padding);
   background-color: var(--secondary-color);
   color: var(--text-color);
   font-size: 1rem;
@@ -96,8 +95,6 @@ button:active {
   font-size: 1.75rem;
   font-weight: bold;
 }
-
-/* *Body section styles* */
 
 /* *Task frame styling* */
 .task-frame {
@@ -272,6 +269,7 @@ button:active {
 /* *Task dialogue modal styles* */
 
 .task-dialogue {
+  width: 40%;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -350,6 +348,7 @@ button:active {
   outline: none;
   font-weight: bold;
   background-color: var(--text-color);
+  resize: none;
   border: var(--primary-border);
   border-radius: var(--primary-radius);
 }
@@ -357,4 +356,9 @@ button:active {
 /* Placeholder color for dialogue task description input */
 .dialogue-task-description-input::placeholder {
   color: var(--ternary-color);
+}
+
+.description-input-char-counter{
+  font-size: 1.125rem;
+  text-align: right;
 }
