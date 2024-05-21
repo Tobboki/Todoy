@@ -28,8 +28,7 @@ export const tasks = [{
 // Rendering tasks
 function generateTaskCardHTML(taskId, taskTitle, taskDescription, taskCreationDate){
   let taskCardHTML = `
-      <!-- Task Card -->
-      <div class="task-card">
+      <div class="task-card" data-task-id="${taskId}">
 
         <!-- Task Card Header-->
         <div class="task-card-header">
@@ -94,6 +93,11 @@ export function renderTasks() {
       taskOptionsButton.addEventListener('click', () => {
         toggleTaskOptionsDropdown(`task-options-dropdown-content-${task.id}`);
       });
+
+      const dropdownDeleteButton = document.getElementById(`task-remove-button-${task.id}`);
+      dropdownDeleteButton.addEventListener('click', () => {
+        removeTask(task.id);
+      });
   });
 };
 
@@ -127,6 +131,11 @@ export function addTask() {
         toggleTaskOptionsDropdown(`task-options-dropdown-content-${newTaskId}`);
       });
 
+      const dropdownDeleteButton = document.getElementById(`task-remove-button-${newTaskId}`);
+      dropdownDeleteButton.addEventListener('click', () => {
+        removeTask(newTaskId);
+      });
+
     closeTaskDialogue();
 
   }
@@ -135,10 +144,23 @@ export function addTask() {
 
 // this fn removes the task using its task id
 export function removeTask(taskId) {
-  tasks.pop(taskId);
 
-  renderTasks();
-};
+  // Find the index of the task with the specified id
+  const index = tasks.findIndex(task => task.id === taskId);
+
+  // Check if the task with the specified id exists
+  if (index !== -1) {
+    // Remove the task from the array
+    tasks.splice(index, 1);
+    // Remove the task from the DOM
+    const taskElement = document.querySelector(`[data-task-id='${taskId}']`);
+    if (taskElement) {
+      taskElement.remove();
+    }
+  } else {
+    console.error(`Task with id='${taskId}' not found.`);
+  }
+}
 
 // *task options dropdown section*
 
@@ -173,6 +195,9 @@ export function openTaskDialogue() {
 };
 
 export function closeTaskDialogue() {
+  const taskDescriptionCharLimit = 255;
+  const taskDescriptionCharCounter = document.getElementById('description-input-char-counter');
+  taskDescriptionCharCounter.textContent = 0 + "/" + taskDescriptionCharLimit;
   taskDialogue.close();
 };
 
@@ -182,7 +207,7 @@ export function getTaskInfo(){
   const taskTitle = taskTitleInput.value;
   const taskDescription = taskDescriptionInput.value;
 
-  if (taskTitle !== '' && taskDescription !== '' && taskDescription.length < taskDescriptionCharLimit){
+  if (taskTitle !== '' && taskDescription.length < taskDescriptionCharLimit){
     taskTitleInput.value = '';
     taskDescriptionInput.value = '';
     return {taskTitle, taskDescription};
