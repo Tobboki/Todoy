@@ -26,32 +26,28 @@ export const tasks = [{
 }];
 
 // Rendering tasks
-export function renderTasks() {
-  const taskFrame = document.getElementById('task-frame');
-  taskFrame.innerHTML = '';
-
-  tasks.forEach(task => {
-      let taskHTML = `
+function generateTaskCardHTML(taskId, taskTitle, taskDescription, taskCreationDate){
+  let taskCardHTML = `
       <!-- Task Card -->
       <div class="task-card">
 
         <!-- Task Card Header-->
         <div class="task-card-header">
-          <h3 class="task-title">${task.title}</h3>
+          <h3 class="task-title">${taskTitle}</h3>
 
           <div class="task-options-dropdown">
-            <button class="task-options-button" id="task-options-button" data-task-option-button-id="${task.id}" type="button">&ctdot;</button>
+            <button class="task-options-button" id="task-options-button" data-task-option-button-id="${taskId}" type="button">&ctdot;</button>
 
-            <div class="task-options-dropdown-content" id="task-options-dropdown-content-${task.id}">
+            <div class="task-options-dropdown-content" id="task-options-dropdown-content-${taskId}">
 
-              <button class="task-edit-button" id="task-edit-button-${task.id}" type="button">
+              <button class="task-edit-button" id="task-edit-button-${taskId}" type="button">
                 <span class="material-symbols-outlined">
                   edit
                 </span>
                 Edit..
               </button>
 
-              <button class="task-remove-button" id="task-remove-button-${task.id}" type="button">
+              <button class="task-remove-button" id="task-remove-button-${taskId}" type="button">
                 <span class="material-symbols-outlined">
                   delete_forever
                 </span>
@@ -64,25 +60,35 @@ export function renderTasks() {
 
         <!-- Task Card Body -->
         <div class="task-card-body">
-          <p class="task-description">${task.description}</p>
+          <p class="task-description">${taskDescription}</p>
         </div>
 
         <!-- Task Card Footer -->
         <div class="task-card-footer">
           <div class="task-checkbox-wrapper">
-            <input class="task-checkbox-input" id="task-checkbox-input-${task.id}" type="checkbox" name="task-done" value="done">
-            <label class="task-checkbox-label" for="task-checkbox-input-${task.id}">Done</label>
+            <input class="task-checkbox-input" id="task-checkbox-input-${taskId}" type="checkbox" name="task-done" value="done">
+            <label class="task-checkbox-label" for="task-checkbox-input-${taskId}">Done</label>
           </div>
           <span class="task-create-section">
             <span class="material-symbols-outlined">calendar_month</span>
-            <time datetime="${task.creationDate}" class="task-create-date">${task.creationDate}</time>
+            <time datetime="${taskCreationDate}" class="task-create-date">${taskCreationDate}</time>
           </span>
         </div>
 
       </div>
       `;
 
-      taskFrame.insertAdjacentHTML('beforeend', taskHTML);
+  return taskCardHTML;
+}
+
+export function renderTasks() {
+  const taskFrame = document.getElementById('task-frame');
+  taskFrame.innerHTML = '';
+
+  tasks.forEach(task => {
+      let taskCardHTML = generateTaskCardHTML(task.id, task.title, task.description, task.creationDate);
+
+      taskFrame.insertAdjacentHTML('beforeend', taskCardHTML);
 
       const taskOptionsButton = document.querySelector(`[data-task-option-button-id='${task.id}']`);
       taskOptionsButton.addEventListener('click', () => {
@@ -111,56 +117,7 @@ export function addTask() {
         "isDone": false
     });
 
-    const newTaskHTML = `
-            <!-- Task Card -->
-            <div class="task-card">
-
-              <!-- Task Card Header-->
-              <div class="task-card-header">
-                <h3 class="task-title">${taskTitle}</h3>
-
-                <div class="task-options-dropdown">
-                  <button class="task-options-button" id="task-options-button" data-task-option-button-id="${newTaskId}" type="button">&ctdot;</button>
-
-                  <div class="task-options-dropdown-content" id="task-options-dropdown-content-${newTaskId}">
-
-                    <button class="task-edit-button" id="task-edit-button-${newTaskId}" type="button">
-                      <span class="material-symbols-outlined">
-                        edit
-                      </span>
-                      Edit..
-                    </button>
-
-                    <button class="task-remove-button" id="task-remove-button-${newTaskId}" type="button">
-                      <span class="material-symbols-outlined">
-                        delete_forever
-                      </span>
-                      Delete
-                    </button>
-
-                  </div>
-                </div>
-              </div>
-
-              <!-- Task Card Body -->
-              <div class="task-card-body">
-                <p class="task-description">${taskDescription}</p>
-              </div>
-
-              <!-- Task Card Footer -->
-              <div class="task-card-footer">
-                <div class="task-checkbox-wrapper">
-                  <input class="task-checkbox-input" id="task-checkbox-input-${newTaskId}" type="checkbox" name="task-done" value="done">
-                  <label class="task-checkbox-label" for="task-checkbox-input-${newTaskId}">Done</label>
-                </div>
-                <span class="task-create-section">
-                  <span class="material-symbols-outlined">calendar_month</span>
-                  <time datetime="${formattedDate}" class="task-create-date">${formattedDate}</time>
-                </span>
-              </div>
-
-            </div>
-            `;
+    const newTaskHTML = generateTaskCardHTML(newTaskId, taskTitle, taskDescription, formattedDate);
 
     const taskFrame = document.querySelector('.task-frame');
     taskFrame.insertAdjacentHTML('beforeend', newTaskHTML);
