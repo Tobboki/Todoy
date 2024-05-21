@@ -1,3 +1,4 @@
+// Tasks Storage
 export const tasks = [{
   'id': '1',
   'title': 'Title',
@@ -24,6 +25,7 @@ export const tasks = [{
   'isDone': false
 }];
 
+// Rendering tasks
 export function renderTasks() {
   const taskFrame = document.getElementById('task-frame');
   taskFrame.innerHTML = '';
@@ -38,7 +40,7 @@ export function renderTasks() {
           <h3 class="task-title">${task.title}</h3>
 
           <div class="task-options-dropdown">
-            <button class="task-options-button" id="task-options-button" type="button">&ctdot;</button>
+            <button class="task-options-button" id="task-options-button" data-task-option-button-id="${task.id}" type="button">&ctdot;</button>
 
             <div class="task-options-dropdown-content" id="task-options-dropdown-content-${task.id}">
 
@@ -73,24 +75,20 @@ export function renderTasks() {
           </div>
           <span class="task-create-section">
             <span class="material-symbols-outlined">calendar_month</span>
-            <time datetime="datetime" class="task-create-date">${task.creationDate}</time>
+            <time datetime="${task.creationDate}" class="task-create-date">${task.creationDate}</time>
           </span>
         </div>
 
       </div>
       `;
 
-      taskFrame.innerHTML += taskHTML;
-  });
+      taskFrame.insertAdjacentHTML('beforeend', taskHTML);
 
-  const taskOptionsButtons = document.querySelectorAll('.task-options-button');
-  taskOptionsButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      const dropdownId = button.nextElementSibling.id;
-      toggleTaskOptionsDropdown(dropdownId);
-    });
+      const taskOptionsButton = document.querySelector(`[data-task-option-button-id='${task.id}']`);
+      taskOptionsButton.addEventListener('click', () => {
+        toggleTaskOptionsDropdown(`task-options-dropdown-content-${task.id}`);
+      });
   });
-
 };
 
 export function addTask() {
@@ -114,72 +112,63 @@ export function addTask() {
     });
 
     const newTaskHTML = `
-          <!-- Task Card -->
-          <div class="task-card">
+            <!-- Task Card -->
+            <div class="task-card">
 
-            <!-- Task Card Header-->
-            <div class="task-card-header">
-              <h3 class="task-title">${taskTitle}</h3>
+              <!-- Task Card Header-->
+              <div class="task-card-header">
+                <h3 class="task-title">${taskTitle}</h3>
 
-              <div class="task-options-dropdown">
-                <button class="task-options-button" id="task-options-button" type="button">&ctdot;</button>
+                <div class="task-options-dropdown">
+                  <button class="task-options-button" id="task-options-button" data-task-option-button-id="${newTaskId}" type="button">&ctdot;</button>
 
-                <div class="task-options-dropdown-content" id="task-options-dropdown-content-${newTaskId}">
+                  <div class="task-options-dropdown-content" id="task-options-dropdown-content-${newTaskId}">
 
-                  <button class="task-edit-button" id="task-edit-button-${newTaskId}" type="button">
-                    <span class="material-symbols-outlined">
-                      edit
-                    </span>
-                    Edit..
-                  </button>
+                    <button class="task-edit-button" id="task-edit-button-${newTaskId}" type="button">
+                      <span class="material-symbols-outlined">
+                        edit
+                      </span>
+                      Edit..
+                    </button>
 
-                  <button class="task-remove-button" id="task-remove-button-${newTaskId}" type="button">
-                    <span class="material-symbols-outlined">
-                      delete_forever
-                    </span>
-                    Delete
-                  </button>
+                    <button class="task-remove-button" id="task-remove-button-${newTaskId}" type="button">
+                      <span class="material-symbols-outlined">
+                        delete_forever
+                      </span>
+                      Delete
+                    </button>
 
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <!-- Task Card Body -->
-            <div class="task-card-body">
-              <p class="task-description">${taskDescription}</p>
-            </div>
-
-            <!-- Task Card Footer -->
-            <div class="task-card-footer">
-              <div class="task-checkbox-wrapper">
-                <input class="task-checkbox-input" id="task-checkbox-input-${newTaskId}" type="checkbox" name="task-done" value="done">
-                <label class="task-checkbox-label" for="task-checkbox-input-${newTaskId}">Done</label>
+              <!-- Task Card Body -->
+              <div class="task-card-body">
+                <p class="task-description">${taskDescription}</p>
               </div>
-              <span class="task-create-section">
-                <span class="material-symbols-outlined">calendar_month</span>
-                <time datetime="datetime" class="task-create-date">${formattedDate}</time>
-              </span>
-            </div>
 
-          </div>
-          `;
+              <!-- Task Card Footer -->
+              <div class="task-card-footer">
+                <div class="task-checkbox-wrapper">
+                  <input class="task-checkbox-input" id="task-checkbox-input-${newTaskId}" type="checkbox" name="task-done" value="done">
+                  <label class="task-checkbox-label" for="task-checkbox-input-${newTaskId}">Done</label>
+                </div>
+                <span class="task-create-section">
+                  <span class="material-symbols-outlined">calendar_month</span>
+                  <time datetime="${formattedDate}" class="task-create-date">${formattedDate}</time>
+                </span>
+              </div>
+
+            </div>
+            `;
 
     const taskFrame = document.querySelector('.task-frame');
     taskFrame.insertAdjacentHTML('beforeend', newTaskHTML);
 
-    // const taskOptionsButtons = document.querySelectorAll('.task-options-button');
-    // taskOptionsButtons[(newTaskId * 1) - 1].addEventListener('click', () => {
-    //   const dropdownId = button.nextElementSibling.id;
-    //   toggleTaskOptionsDropdown(dropdownId);
-    // });
-
-    const taskOptionsButtons = document.querySelectorAll('.task-options-button');
-    taskOptionsButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const dropdownId = button.nextElementSibling.id;
-        toggleTaskOptionsDropdown(dropdownId);
+    const taskOptionsButton = document.querySelector(`[data-task-option-button-id='${newTaskId}']`);
+      taskOptionsButton.addEventListener('click', () => {
+        toggleTaskOptionsDropdown(`task-options-dropdown-content-${newTaskId}`);
       });
-    });
 
     closeTaskDialogue();
 
@@ -187,6 +176,7 @@ export function addTask() {
   
 };
 
+// this fn removes the task using its task id
 export function removeTask(taskId) {
   tasks.pop(taskId);
 
@@ -201,6 +191,7 @@ export function toggleTaskOptionsDropdown(dropdownId) {
   dropdown.classList.toggle('dropdown-content-show');
 };
 
+// !Under Construction: overlay effect for dropdown menu
 // const taskOptionsDropdowns = document.querySelectorAll('.task-options-dropdown-content');
 // taskOptionsDropdowns.forEach(dropdown => {
 //   dropdown.addEventListener("click", e => {
