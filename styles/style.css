@@ -129,8 +129,11 @@ button:active {
 }
 
 /* Task title styling */
-.task-title {
+.task-card-title {
+  max-width: 200px;
   font-size: 1.25rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* *Task options button styling* */

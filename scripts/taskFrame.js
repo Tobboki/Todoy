@@ -10,7 +10,7 @@ function generateTaskCardHTML(taskId, taskTitle, taskDescription, taskCreationDa
 
         <!-- Task Card Header-->
         <div class="task-card-header">
-          <h3 class="task-title">${taskTitle}</h3>
+          <h3 class="task-card-title">${taskTitle}</h3>
 
           <div class="task-options-dropdown">
             <button class="task-options-button" id="task-options-button" data-task-option-button-id="${taskId}" type="button">&ctdot;</button>
