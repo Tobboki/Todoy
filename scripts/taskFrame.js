@@ -1,29 +1,7 @@
+import { loadTasksFromStorage, saveTasksToStorage } from "../data/tasks.js";
+
 // Tasks Storage
-export const tasks = [{
-  'id': '1',
-  'title': 'Title',
-  'description': 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, ab. Dignissimos repellat, sapiente eos perferendis vitae reiciendis recusandae omnis illo excepturi ea quidem ipsum iste? Temporibus culpa dolores nostrum doloremque.',
-  'creationDate': '17/4/2022',
-  'isDone': false
-}, {
-  'id': '2',
-  'title': 'Title',
-  'description': 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, ab. Dignissimos repellat, sapiente eos perferendis vitae reiciendis recusandae omnis illo excepturi ea quidem ipsum iste? Temporibus culpa dolores nostrum doloremque.',
-  'creationDate': '17/4/2022',
-  'isDone': false
-}, {
-  'id': '3',
-  'title': 'Title',
-  'description': 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, ab. Dignissimos repellat, sapiente eos perferendis vitae reiciendis recusandae omnis illo excepturi ea quidem ipsum iste? Temporibus culpa dolores nostrum doloremque.',
-  'creationDate': '17/4/2022',
-  'isDone': false
-}, {
-  'id': '4',
-  'title': 'Title',
-  'description': 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, ab. Dignissimos repellat, sapiente eos perferendis vitae reiciendis recusandae omnis illo excepturi ea quidem ipsum iste? Temporibus culpa dolores nostrum doloremque.',
-  'creationDate': '17/4/2022',
-  'isDone': false
-}];
+const tasks = loadTasksFromStorage();
 
 // Rendering tasks
 function generateTaskCardHTML(taskId, taskTitle, taskDescription, taskCreationDate){
@@ -101,7 +79,7 @@ export function renderTasks() {
   });
 };
 
-export function addTask() {
+function addTask() {
   const taskInfo = getTaskInfo();
 
   if (taskInfo !== null){
@@ -138,12 +116,13 @@ export function addTask() {
 
     closeTaskDialogue();
 
+    saveTasksToStorage();
   }
   
 };
 
 // this fn removes the task using its task id
-export function removeTask(taskId) {
+function removeTask(taskId) {
 
   // Find the index of the task with the specified id
   const index = tasks.findIndex(task => task.id === taskId);
@@ -152,6 +131,10 @@ export function removeTask(taskId) {
   if (index !== -1) {
     // Remove the task from the array
     tasks.splice(index, 1);
+
+    // save the new tasks object to storage
+    saveTasksToStorage();
+
     // Remove the task from the DOM
     const taskElement = document.querySelector(`[data-task-id='${taskId}']`);
     if (taskElement) {
@@ -164,7 +147,7 @@ export function removeTask(taskId) {
 
 // *task options dropdown section*
 
-export function toggleTaskOptionsDropdown(dropdownId) {
+function toggleTaskOptionsDropdown(dropdownId) {
   const dropdown = document.getElementById(dropdownId);
 
   dropdown.classList.toggle('dropdown-content-show');
@@ -188,20 +171,20 @@ export function toggleTaskOptionsDropdown(dropdownId) {
 // });
 
 // *Task dialogue section*
-export const taskDialogue = document.getElementById('task-dialogue');
+const taskDialogue = document.getElementById('task-dialogue');
 
 export function openTaskDialogue() {
   taskDialogue.showModal();
 };
 
-export function closeTaskDialogue() {
+function closeTaskDialogue() {
   const taskDescriptionCharLimit = 255;
   const taskDescriptionCharCounter = document.getElementById('description-input-char-counter');
   taskDescriptionCharCounter.textContent = 0 + "/" + taskDescriptionCharLimit;
   taskDialogue.close();
 };
 
-export function getTaskInfo(){
+function getTaskInfo(){
   const taskTitleInput = document.getElementById('dialogue-task-title-input');
   const taskDescriptionInput = document.getElementById('dialogue-task-description-input');
   const taskTitle = taskTitleInput.value;
