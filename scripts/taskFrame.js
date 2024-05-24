@@ -40,7 +40,7 @@ function generateTaskCardHTML(taskId, taskTitle, taskDescription, taskCreationDa
 
           <!-- Task Card Body -->
           <div class="task-card-body">
-            <p class="task-description" id="task-desc-${taskId}">${taskDescription}</p>
+            <p class="task-description" id="task-description-${taskId}">${taskDescription}</p>
           </div>
 
           <!-- Task Card Footer -->
@@ -190,7 +190,7 @@ function toggleTaskOptionsDropdown(dropdownId) {
 function toggleCrossedText(taskId) {
   const checkbox = document.getElementById(`task-checkbox-input-${taskId}`);
   const title = document.getElementById(`task-title-${taskId}`);
-  const description = document.getElementById(`task-desc-${taskId}`);
+  const description = document.getElementById(`task-description-${taskId}`);
 
   if (checkbox.checked) {
     title.classList.add('crossed-text');
