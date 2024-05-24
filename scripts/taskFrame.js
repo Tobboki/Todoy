@@ -1,6 +1,6 @@
 import { loadTasksFromStorage, saveTasksToStorage } from "../data/tasks.js";
 import { openTaskDialogue, closeTaskDialogue, getTaskInfo } from "./taskDialogue.js";
-
+import { formatDate } from "./helpers/formatDate.js";
 // Tasks Storage
 let tasks = loadTasksFromStorage();
 
@@ -84,22 +84,18 @@ export function addTask() {
     // collect the new task info
     const { taskTitle, taskDescription } = taskInfo;
     const newTaskId = (tasks.length + 1).toString();
-    const date = new Date();
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
-    const formattedDate = `${day}/${month}/${year}`;
+    const taskCreationDate = formatDate();
 
     // create a new task object and append it to the tasks array
     tasks.push({
         "id": newTaskId,
         "title": taskTitle,
         "description": taskDescription,
-        "creationDate": formattedDate,
+        "creationDate": taskCreationDate,
         "isDone": false
     });
 
-    const newTaskHTML = generateTaskCardHTML(newTaskId, taskTitle, taskDescription, formattedDate);
+    const newTaskHTML = generateTaskCardHTML(newTaskId, taskTitle, taskDescription, taskCreationDate);
 
     const taskFrame = document.querySelector('.task-frame');
     taskFrame.insertAdjacentHTML('beforeend', newTaskHTML);
