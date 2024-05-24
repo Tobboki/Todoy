@@ -297,7 +297,7 @@ button:active {
 }
 
 /* Add button styling */
-.task-dialogue-add-button {
+.task-dialogue-add-button, .task-dialogue-save-button {
   padding: 12px calc(2 * var(--primary-padding));
 }
 

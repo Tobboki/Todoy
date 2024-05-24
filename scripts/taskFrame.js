@@ -1,11 +1,12 @@
 import { loadTasksFromStorage, saveTasksToStorage } from "../data/tasks.js";
+import { openTaskDialogue, closeTaskDialogue, getTaskInfo } from "./taskDialogue.js";
 
 // Tasks Storage
-const tasks = loadTasksFromStorage();
+let tasks = loadTasksFromStorage();
 
 // Rendering tasks
 function generateTaskCardHTML(taskId, taskTitle, taskDescription, taskCreationDate){
-  let taskCardHTML = `
+  return `
       <div class="task-card" data-task-id="${taskId}">
 
         <!-- Task Card Header-->
@@ -54,8 +55,6 @@ function generateTaskCardHTML(taskId, taskTitle, taskDescription, taskCreationDa
 
       </div>
       `;
-
-  return taskCardHTML;
 }
 
 export function renderTasks() {
@@ -72,6 +71,13 @@ export function renderTasks() {
         toggleTaskOptionsDropdown(`task-options-dropdown-content-${task.id}`);
       });
 
+      const dropdownEditButton = document.getElementById(`task-edit-button-${task.id}`);
+      dropdownEditButton.addEventListener('click', () => {
+        toggleTaskOptionsDropdown(`task-options-dropdown-content-${task.id}`);
+        openTaskDialogue('edit', task.id);
+        editTask(task.id);
+      });
+
       const dropdownDeleteButton = document.getElementById(`task-remove-button-${task.id}`);
       dropdownDeleteButton.addEventListener('click', () => {
         removeTask(task.id);
@@ -79,7 +85,7 @@ export function renderTasks() {
   });
 };
 
-function addTask() {
+export function addTask() {
   const taskInfo = getTaskInfo();
 
   if (taskInfo !== null){
@@ -109,6 +115,13 @@ function addTask() {
         toggleTaskOptionsDropdown(`task-options-dropdown-content-${newTaskId}`);
       });
 
+      const dropdownEditButton = document.getElementById(`task-edit-button-${newTaskId}`);
+      dropdownEditButton.addEventListener('click', () => {
+        toggleTaskOptionsDropdown(`task-options-dropdown-content-${newTaskId}`);
+        openTaskDialogue('edit', newTaskId);
+        editTask(newTaskId);
+      });
+
       const dropdownDeleteButton = document.getElementById(`task-remove-button-${newTaskId}`);
       dropdownDeleteButton.addEventListener('click', () => {
         removeTask(newTaskId);
@@ -121,16 +134,70 @@ function addTask() {
   
 };
 
-// this fn removes the task using its task id
+// this fn edits a task using its task id
+export function editTask(taskId){
+  const taskInfo = getTaskInfo();
+
+  if (taskInfo !== null){
+    const { taskTitle, taskDescription } = taskInfo;
+
+    // Find the index of the task with the specified id
+    const taskIndex = tasks.findIndex(task => taskId === task.id);
+
+    // Check if the task with the specified id exists
+    if (taskIndex !== -1) {
+      // edit the task object in the array
+      const selectedTask = tasks[taskIndex];
+      selectedTask.title = taskTitle;
+      selectedTask.description = taskDescription;
+      
+      // replaced the selected task with new generated task on the DOM
+      const taskElement = document.querySelector(`[data-task-id='${taskId}']`);
+      if (taskElement) {
+        const editedTaskElement = generateTaskCardHTML(selectedTask.id, selectedTask.title, selectedTask.description, selectedTask.creationDate);
+        taskElement.outerHTML = editedTaskElement;
+        
+        const taskOptionsButton = document.querySelector(`[data-task-option-button-id='${taskId}']`);
+        taskOptionsButton.addEventListener('click', () => {
+          toggleTaskOptionsDropdown(`task-options-dropdown-content-${taskId}`);
+        });
+
+        const dropdownEditButton = document.getElementById(`task-edit-button-${taskId}`);
+        dropdownEditButton.addEventListener('click', () => {
+          toggleTaskOptionsDropdown(`task-options-dropdown-content-${taskId}`);
+          openTaskDialogue('edit', taskId);
+          editTask(taskId);
+        });
+
+        const dropdownDeleteButton = document.getElementById(`task-remove-button-${taskId}`);
+        dropdownDeleteButton.addEventListener('click', () => {
+          removeTask(taskId);
+        });
+      }
+      
+      // save the new tasks object to storage
+      saveTasksToStorage();
+
+      // close the task dialogue
+      closeTaskDialogue();
+    } else { 
+      // an err msg just in case (it theoretically should never work)
+      console.error(`Task with id='${taskId}' not found.`);
+    }
+  }
+
+}
+
+// this fn removes a task using its task id
 function removeTask(taskId) {
 
   // Find the index of the task with the specified id
-  const index = tasks.findIndex(task => task.id === taskId);
+  const taskIndex = tasks.findIndex(task => taskId === task.id);
 
   // Check if the task with the specified id exists
-  if (index !== -1) {
+  if (taskIndex !== -1) {
     // Remove the task from the array
-    tasks.splice(index, 1);
+    tasks.splice(taskIndex, 1);
 
     // save the new tasks object to storage
     saveTasksToStorage();
@@ -169,72 +236,3 @@ function toggleTaskOptionsDropdown(dropdownId) {
 //     }
 //   });
 // });
-
-// *Task dialogue section*
-const taskDialogue = document.getElementById('task-dialogue');
-
-export function openTaskDialogue() {
-  taskDialogue.showModal();
-};
-
-function closeTaskDialogue() {
-  const taskDescriptionCharLimit = 255;
-  const taskDescriptionCharCounter = document.getElementById('description-input-char-counter');
-  taskDescriptionCharCounter.textContent = 0 + "/" + taskDescriptionCharLimit;
-  taskDialogue.close();
-};
-
-function getTaskInfo(){
-  const taskTitleInput = document.getElementById('dialogue-task-title-input');
-  const taskDescriptionInput = document.getElementById('dialogue-task-description-input');
-  const taskTitle = taskTitleInput.value;
-  const taskDescription = taskDescriptionInput.value;
-
-  if (taskTitle !== '' && taskDescription.length < taskDescriptionCharLimit){
-    taskTitleInput.value = '';
-    taskDescriptionInput.value = '';
-    return {taskTitle, taskDescription};
-  } else{
-    return null;
-  }
-
-} ;
-
-//add button functionality
-document.getElementById('task-dialogue-add-button').addEventListener('click', function() {
-  addTask();
-});
-
-//cancel button functionality
-document.getElementById('task-dialogue-cancel-button').addEventListener('click', function() {
-  closeTaskDialogue();
-});
-
-//close taskDialogue when clicked outside of it (overlay effect)
-taskDialogue.addEventListener("click", e => {
-  const dialogDimensions = taskDialogue.getBoundingClientRect()
-  if (
-    e.clientX < dialogDimensions.left ||
-    e.clientX > dialogDimensions.right ||
-    e.clientY < dialogDimensions.top ||
-    e.clientY > dialogDimensions.bottom
-  ) {
-    closeTaskDialogue();
-  }
-});
-
-// task description input char limit
-const taskDescriptionCharLimit = 255;
-const taskDescriptionCharCounter = document.getElementById('description-input-char-counter');
-taskDescriptionCharCounter.textContent = 0 + "/" + taskDescriptionCharLimit;
-
-const taskDescriptionInput = document.getElementById('dialogue-task-description-input');
-taskDescriptionInput.addEventListener('input', () => {
-  let textLength = taskDescriptionInput.value.length;
-  taskDescriptionCharCounter.textContent = textLength + "/" + taskDescriptionCharLimit;
-
-  if (textLength > taskDescriptionCharLimit) {
-    taskDescriptionInput.style.borderColor = "#e72f41";
-    taskDescriptionCharCounter.style.color = "#e72f41";
-  }
-});

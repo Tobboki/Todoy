@@ -41,25 +41,11 @@
       <main class="task-frame" id="task-frame"></main>
 
   <!-- Task Dialogue -->
-  <dialog class="task-dialogue" id="task-dialogue">
-
-    <div class="task-dialogue-header">
-      <button id="task-dialogue-cancel-button" class="task-dialogue-cancel-button" type="button">Cancel</button>
-      <button id="task-dialogue-add-button" class="task-dialogue-add-button" type="submit">Add</button>
-    </div>
-
-    <form class="task-dialogue-body"><!-- !fix action-->
-        <label for="dialogue-task-title-input" class="dialogue-task-title-label">Title</label>
-        <input id="dialogue-task-title-input" class="dialogue-task-title-input" type="text" placeholder="add a title..." autocomplete="off" required>
-        <label for="dialogue-task-description-input" class="dialogue-task-description-label">Description</label>
-        <textarea name="task-description" id="dialogue-task-description-input" class="dialogue-task-description-input" placeholder="add a description..." required></textarea>
-        <span class="description-input-char-counter" id="description-input-char-counter"></span>
-    </form>
-
-  </dialog>
+  <dialog class="task-dialogue" id="task-dialogue"></dialog>
 
   <!-- External JavaScript file -->
   <script type="module" src="scripts/taskFrame.js" defer></script>
+  <script type="module" src="scripts/taskDialogue.js" defer></script>
   <script type="module" src="scripts/app.js" defer></script>
 
 </body>
