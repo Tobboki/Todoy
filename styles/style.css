@@ -136,6 +136,8 @@ button:active {
   text-overflow: ellipsis;
 }
 
+
+
 /* *Task options button styling* */
 .task-options-button {
   padding: 0;
@@ -211,6 +213,7 @@ button:active {
 
 /* Task card footer styling */
 .task-card-footer {
+  margin-top: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
