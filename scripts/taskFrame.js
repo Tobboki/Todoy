@@ -4,59 +4,59 @@ import { formatDate } from "./helpers/formatDate.js";
 // Tasks Storage
 let tasks = loadTasksFromStorage();
 
-// Rendering tasks
+// * Task CRUD Functions *
 
 // fn to generate the task card HTML and return as string
 function generateTaskCardHTML(taskId, taskTitle, taskDescription, taskCreationDate){
   return `
-      <div class="task-card" data-task-id="${taskId}">
+        <div class="task-card" data-task-id="${taskId}">
 
-        <!-- Task Card Header-->
-        <div class="task-card-header">
-          <h3 class="task-card-title">${taskTitle}</h3>
+          <!-- Task Card Header-->
+          <div class="task-card-header">
+            <h3 class="task-card-title" id="task-title-${taskId}">${taskTitle}</h3>
 
-          <div class="task-options-dropdown">
-            <button class="task-options-button" id="task-options-button" data-task-option-button-id="${taskId}" type="button">&ctdot;</button>
+            <div class="task-options-dropdown">
+              <button class="task-options-button" id="task-options-button" data-task-option-button-id="${taskId}" type="button">&ctdot;</button>
 
-            <div class="task-options-dropdown-content" id="task-options-dropdown-content-${taskId}">
+              <div class="task-options-dropdown-content" id="task-options-dropdown-content-${taskId}">
 
-              <button class="task-edit-button" id="task-edit-button-${taskId}" type="button">
-                <span class="material-symbols-outlined">
-                  edit
-                </span>
-                Edit..
-              </button>
+                <button class="task-edit-button" id="task-edit-button-${taskId}" type="button">
+                  <span class="material-symbols-outlined">
+                    edit
+                  </span>
+                  Edit..
+                </button>
 
-              <button class="task-remove-button" id="task-remove-button-${taskId}" type="button">
-                <span class="material-symbols-outlined">
-                  delete_forever
-                </span>
-                Delete
-              </button>
+                <button class="task-remove-button" id="task-remove-button-${taskId}" type="button">
+                  <span class="material-symbols-outlined">
+                    delete_forever
+                  </span>
+                  Delete
+                </button>
 
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Task Card Body -->
-        <div class="task-card-body">
-          <p class="task-description">${taskDescription}</p>
-        </div>
-
-        <!-- Task Card Footer -->
-        <div class="task-card-footer">
-          <div class="task-checkbox-wrapper">
-            <input class="task-checkbox-input" id="task-checkbox-input-${taskId}" type="checkbox" name="task-done" value="done">
-            <label class="task-checkbox-label" for="task-checkbox-input-${taskId}">Done</label>
+          <!-- Task Card Body -->
+          <div class="task-card-body">
+            <p class="task-description" id="task-desc-${taskId}">${taskDescription}</p>
           </div>
-          <span class="task-create-section">
-            <span class="material-symbols-outlined">calendar_month</span>
-            <time datetime="${taskCreationDate}" class="task-create-date">${taskCreationDate}</time>
-          </span>
-        </div>
 
-      </div>
-      `;
+          <!-- Task Card Footer -->
+          <div class="task-card-footer">
+            <div class="task-checkbox-wrapper">
+              <input class="task-checkbox-input" id="task-checkbox-input-${taskId}" type="checkbox" name="task-done" value="done">
+              <label class="task-checkbox-label" for="task-checkbox-input-${taskId}">Done</label>
+            </div>
+            <span class="task-create-section">
+              <span class="material-symbols-outlined">calendar_month</span>
+              <time datetime="${taskCreationDate}" class="task-create-date">${taskCreationDate}</time>
+            </span>
+          </div>
+
+        </div>
+        `;
 }
 
 // fn to render tasks on the page
@@ -72,7 +72,7 @@ export function renderTasks() {
       taskFrame.insertAdjacentHTML('beforeend', taskCardHTML);
 
       // add dropdown section listeners
-      dropdownButtonsListeners(task.id);
+      addTaskEventListeners(task.id);
   });
 };
 
@@ -101,7 +101,7 @@ export function addTask() {
     taskFrame.insertAdjacentHTML('beforeend', newTaskHTML);
 
     // add dropdown section listeners
-    dropdownButtonsListeners(newTaskId);
+    addTaskEventListeners(newTaskId);
 
     // close the task dialogue
     closeTaskDialogue();
@@ -136,7 +136,7 @@ export function editTask(taskId){
         taskElement.outerHTML = editedTaskElement;
         
         // add dropdown section listeners
-        dropdownButtonsListeners(taskId);
+        addTaskEventListeners(taskId);
       }
       
       // save the new tasks object to storage
@@ -176,7 +176,8 @@ function removeTask(taskId) {
   }
 }
 
-// *task options dropdown section*
+// * Task Card Event Handlers and UI Interactions *
+
 
 // fn to toggle task card dropdown menu display
 function toggleTaskOptionsDropdown(dropdownId) {
@@ -185,13 +186,30 @@ function toggleTaskOptionsDropdown(dropdownId) {
   dropdown.classList.toggle('dropdown-content-show');
 };
 
-// fn to add dropdown section buttons functionality
-function dropdownButtonsListeners(taskId){
+// fn to toggle task card title & description crossed when checkbox Done is changed
+function toggleCrossedText(taskId) {
+  const checkbox = document.getElementById(`task-checkbox-input-${taskId}`);
+  const title = document.getElementById(`task-title-${taskId}`);
+  const description = document.getElementById(`task-desc-${taskId}`);
+
+  if (checkbox.checked) {
+    title.classList.add('crossed-text');
+    description.classList.add('crossed-text');
+  } else {
+    title.classList.remove('crossed-text');
+    description.classList.remove('crossed-text');
+  }
+};
+
+// fn to add task card events listeners
+function addTaskEventListeners(taskId){
+  // task options button event 'click' listener
   const taskOptionsButton = document.querySelector(`[data-task-option-button-id='${taskId}']`);
   taskOptionsButton.addEventListener('click', () => {
     toggleTaskOptionsDropdown(`task-options-dropdown-content-${taskId}`);
   });
 
+  // task options edit button event 'click' listener
   const dropdownEditButton = document.getElementById(`task-edit-button-${taskId}`);
   dropdownEditButton.addEventListener('click', () => {
     toggleTaskOptionsDropdown(`task-options-dropdown-content-${taskId}`);
@@ -199,10 +217,15 @@ function dropdownButtonsListeners(taskId){
     editTask(taskId);
   });
 
+  // task options delete button event 'click' listener
   const dropdownDeleteButton = document.getElementById(`task-remove-button-${taskId}`);
   dropdownDeleteButton.addEventListener('click', () => {
     removeTask(taskId);
   });
+
+  // task checkbox event 'change' listener
+  const checkbox = document.getElementById(`task-checkbox-input-${taskId}`);
+  checkbox.addEventListener('change', () => toggleCrossedText(taskId));
 };
 
 // !Under Construction: overlay effect for dropdown menu

@@ -26,6 +26,11 @@
   --primary-radius: 6px;
 }
 
+/* General (Multi Use) Classes */
+.crossed-text {
+  text-decoration: line-through;
+}
+
 /* Body styles */
 
 /* Reset default margin and padding for body */
