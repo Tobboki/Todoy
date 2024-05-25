@@ -40,7 +40,7 @@ A modern web browser (e.g., Chrome, Firefox, Edge)
 Installation
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/todoy.git
+    git clone https://github.com/Tobboki/Todoy.git
     ```
 2. Navigate to the project directory:
     ```bash
