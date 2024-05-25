@@ -22,6 +22,7 @@ Todoy is a sleek and functional todo web app designed to help you manage your ta
     │   │   └─ formatDate.js
     ├── index.html
 ```
+
 - **assets/:** Contains static assets such as the favicon.
 - **data/:** Includes the tasks.js file which manages the task data.
 - **scripts/:** Contains JavaScript files for the app's functionality, including helper functions and main application logic.
@@ -32,39 +33,49 @@ Todoy is a sleek and functional todo web app designed to help you manage your ta
 - **styles/:** Contains the main stylesheet style.css for the app.
 - **index.html:** The main HTML file for the app.
 
-# Getting Started
-To get started with Taskeraizer, simply clone the repository and open the index.html file in your preferred web browser.
+## Getting Started
+
+To get started with Todoy, simply clone the repository and open the index.html file in your preferred web browser.
 
 ## Prerequisites
+
 A modern web browser (e.g., Chrome, Firefox, Edge)
-Installation
+
+## Installation
+
 1. Clone the repository:
+
     ```bash
     git clone https://github.com/Tobboki/Todoy.git
     ```
+
 2. Navigate to the project directory:
+
     ```bash
     cd Todoy
     ```
+
 3. Open the index.html file in your web browser.
 
 ## Usage
+
 1. Add a Task: Enter the task details in the input field and click the "Add Task" button.
 2. Edit a Task: Click the "Edit" button next to a task to modify its details.
 3. Delete a Task: Click the "Delete" button next to a task to remove it from the list.
-3. Mark as Complete: Check the checkbox next to a task to mark it as complete.
+4. Mark as Complete: Check the checkbox next to a task to mark it as complete.
 
 ## Contributing
+
 Contributions are welcome! If you have suggestions for improvements or new features, feel free to open an issue or submit a pull request.
 
 ## License
-This project is licensed under the MIT License. See the LICENSE file for details.
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE.txt) file for details.
 
 ## Acknowledgements
+
 **Figma:** For the UI design tool
 
-**Layout:**  inspired by [Nada Ishtewi](https://www.behance.net/nsaeooshy) check the design [here!](https://www.behance.net/gallery/107935847/Todo-List-Desktop-Mobile-app-UI-Design?tracking_source=search_projects|todo+list+app&l=7)
-
-**Neo-Brutalism:** For the design inspiration
+**[Nada Ishtewi](https://www.behance.net/nsaeooshy):** For the design inspiration check the design [here!](https://www.behance.net/gallery/107935847/Todo-List-Desktop-Mobile-app-UI-Design?tracking_source=search_projects|todo+list+app&l=7)
 
 **ChatGPT:** For providing assistance in building this app
