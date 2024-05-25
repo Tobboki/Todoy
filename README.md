@@ -35,7 +35,7 @@ Todoy is a sleek and functional todo web app designed to help you manage your ta
 # Getting Started
 To get started with Taskeraizer, simply clone the repository and open the index.html file in your preferred web browser.
 
-# Prerequisites
+## Prerequisites
 A modern web browser (e.g., Chrome, Firefox, Edge)
 Installation
 1. Clone the repository:
@@ -48,19 +48,19 @@ Installation
     ```
 3. Open the index.html file in your web browser.
 
-# Usage
+## Usage
 1. Add a Task: Enter the task details in the input field and click the "Add Task" button.
 2. Edit a Task: Click the "Edit" button next to a task to modify its details.
 3. Delete a Task: Click the "Delete" button next to a task to remove it from the list.
 3. Mark as Complete: Check the checkbox next to a task to mark it as complete.
 
-# Contributing
+## Contributing
 Contributions are welcome! If you have suggestions for improvements or new features, feel free to open an issue or submit a pull request.
 
-# License
+## License
 This project is licensed under the MIT License. See the LICENSE file for details.
 
-# Acknowledgements
+## Acknowledgements
 **Figma:** For the UI design tool
 
 **Layout:**  inspired by [Nada Ishtewi](https://www.behance.net/nsaeooshy) check the design [here!](https://www.behance.net/gallery/107935847/Todo-List-Desktop-Mobile-app-UI-Design?tracking_source=search_projects|todo+list+app&l=7)
