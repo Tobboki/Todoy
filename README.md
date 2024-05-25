@@ -11,7 +11,7 @@ Todoy is a sleek and functional todo web app designed to help you manage your ta
 
 ## Directory Structure
 
-    ```plaintext
+```plaintext
     todoy/
     ├── assets/
     │   └─ favicon.ico
@@ -21,7 +21,7 @@ Todoy is a sleek and functional todo web app designed to help you manage your ta
     │   ├── helpers/
     │   │   └─ formatDate.js
     ├── index.html
-    ```
+```
 - **assets/:** Contains static assets such as the favicon.
 - **data/:** Includes the tasks.js file which manages the task data.
 - **scripts/:** Contains JavaScript files for the app's functionality, including helper functions and main application logic.
