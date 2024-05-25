@@ -62,6 +62,9 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 # Acknowledgements
 **Figma:** For the UI design tool
+
 **Layout:**  inspired by [Nada Ishtewi](https://www.behance.net/nsaeooshy) check the design [here!](https://www.behance.net/gallery/107935847/Todo-List-Desktop-Mobile-app-UI-Design?tracking_source=search_projects|todo+list+app&l=7)
+
 **Neo-Brutalism:** For the design inspiration
+
 **ChatGPT:** For providing assistance in building this app
