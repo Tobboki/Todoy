@@ -18,9 +18,14 @@ Todoy is a sleek and functional todo web app designed to help you manage your ta
     ├── data/
     │   └─ tasks.js
     ├── scripts/
-    │   ├── helpers/
+    │   ├─ helpers/
     │   │   └─ formatDate.js
-    ├── index.html
+    │   ├─ app.js
+    │   ├─ taskDialogue.js
+    │   └─ taskFrame.js
+    ├── styles/
+    │   └─ style.css
+    └── index.html
 ```
 
 - **assets/:** Contains static assets such as the favicon.
