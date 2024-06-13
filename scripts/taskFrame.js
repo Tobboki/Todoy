@@ -1,6 +1,6 @@
-import { loadTasksFromStorage, saveTasksToStorage } from "../../data/tasks.js";
+import { loadTasksFromStorage, saveTasksToStorage } from "../data/tasks.js";
 import { openTaskDialogue, closeTaskDialogue, getTaskInfo } from "./taskDialogue.js";
-import { formatDate } from "../helpers/formatDate.js";
+import { formatDate } from "./helpers/formatDate.js";
 // Tasks Storage
 let tasks = loadTasksFromStorage();
 
