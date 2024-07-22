@@ -1,16 +1,9 @@
-/* Global styles */
-
-/* Set box-sizing to border-box for all elements */
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: 'Archivo', sans-serif;
-}
-
-/* Define root variables for consistent styling */
+/* *Root variables* */
 :root {
+  /* Root styles */
   font-size: 16px;
+  font-family: 'Archivo', sans-serif;
+
   --primary-padding: 16px;
   --secondary-padding: 8px;
   --primary-font-family: 'Archivo', sans-serif;
@@ -24,14 +17,119 @@
   --secondary-shadow: 4px 4px 2px var(--shadow-color);
   --primary-border: 4px solid var(--secondary-color);
   --primary-radius: 6px;
+
+  /* Color scheme*/
+  --clr-primary: black;
+
+  --clr-neutral-dark:  hsl(0, 0%, 7%);
+
+  --clr-font-light: hsl(0, 0%, 96%);
+  --clr-font-dark:  hsl(0, 0%, 7%);
+
+  /* Font sizes*/
+
+  /* Font weights*/
+
+  /* Padding & margins */
+
+  /* Shadows */
+
+  /* Borders */
 }
 
-/* General (Multi Use) Classes */
-.crossed-text {
-  text-decoration: line-through;
+/* *Andy Bell's basic resets* */
+*{
+  margin: 0;
+  padding: 0;
+  font: inherit;
 }
 
-/* Body styles */
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Prevent font size inflation */
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+/* Set core root defaults */
+html:focus:focus-within{
+  scroll-behavior: smooth;
+}
+
+html,
+body{
+  height: 100%;
+}
+
+/* Remove default margin in favour of better control in authored CSS */
+body, h1, h2, h3, h4, p,
+figure, blockquote, dl, dd {
+  margin-block-end: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* Set shorter line heights on headings and interactive elements */
+h1, h2, h3, h4,
+button, input, label {
+  line-height: 1.1;
+}
+
+/* Balance text wrapping on headings */
+h1, h2,
+h3, h4 {
+  text-wrap: balance;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+  color: currentColor;
+}
+
+/* Make images easier to work with */
+img,
+picture,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input, button,
+textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* Make sure textareas without a rows attribute are not tiny */
+textarea:not([rows]) {
+  min-height: 10em;
+}
+
+/* Anything that has been anchored to should have extra scroll margin */
+:target {
+  scroll-margin-block: 5ex;
+}
+
+/* *General styles* */
 
 /* Reset default margin and padding for body */
 body {
@@ -373,3 +471,10 @@ button:active {
   font-size: 1.125rem;
   text-align: right;
 }
+
+/* *Utility classes* */
+.crossed-text {
+  text-decoration: line-through;
+}
+
+/* *Media Queries* */
