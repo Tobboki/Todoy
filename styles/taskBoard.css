@@ -204,7 +204,7 @@ button:active {
   min-width: fit-content;
   padding: var(--primary-padding);
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 20px;
   border: 4px solid var(--secondary-color);
   border-radius: var(--primary-radius);
@@ -263,7 +263,8 @@ button:active {
 
 .task-options-dropdown-content {
   position: absolute;
-  min-width: 140px;
+  right: 0;
+  min-width: fit-content;
   padding: var(--secondary-padding);
   display: none;
   background-color: #E7E6E4;
@@ -277,15 +278,16 @@ button:active {
 .task-options-dropdown-content.dropdown-content-show{
   display: flex;
   flex-flow: column nowrap;
-  gap: 8px;
+  gap: 0.5em;
 }
 
 /* Style for dropdown links */
 .task-options-dropdown-content button{
   width: 100%;
   display: flex;
-  gap: 4px;
-  padding: 12px 16px;
+  align-items: center;
+  gap: 0.25em;
+  padding: 0.75em 1em;
   color: black;
   background: none;
   background-color: #cdcdcd;
@@ -309,6 +311,7 @@ button:active {
   font-size: 1rem;
   font-weight: 500;
   display: -webkit-box;
+  line-clamp: 4;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;  
   overflow: hidden;
@@ -428,6 +431,7 @@ button:active {
 
 /* Dialogue task title input styling */
 .dialogue-task-title-input {
+  margin-bottom: 1em;
   width: 100%;
   height: 40px;
   padding: var(--primary-padding);
@@ -452,7 +456,6 @@ button:active {
 /* Dialogue task description input styling */
 .dialogue-task-description-input {
   width: 100%;
-  height: 160px;
   padding: 10px;
   outline: none;
   font-weight: bold;
@@ -478,3 +481,60 @@ button:active {
 }
 
 /* *Media Queries* */
+@media screen and (max-width: 876px) {
+  .task-dialogue {
+    width: 60%;
+  }
+
+}
+
+@media screen and (max-width: 618px) {
+  .task-dialogue {
+    width: 70%;
+  }
+
+}
+
+@media screen and (max-width: 478px) {
+  .task-options-dropdown-content  button{
+    padding: 0.5em;
+  }
+  
+  .task-dialogue {
+    padding: 0.5em;
+    font-size: .75rem;
+  }
+
+  .task-dialogue-header {
+    padding: 0.75em;
+  }
+
+  .task-dialogue-body {
+    padding: 0.75em;
+  }
+
+  .task-dialogue button {
+    padding: 0.75em ;
+    font-size: 1rem;
+  }
+
+  .task-dialogue label {
+    font-size: 1.125rem;
+  }
+
+  .description-input-char-counter {
+    font-size: 0.875rem;
+  }
+
+}
+
+@media screen and (max-width: 300px) {
+  .create-task-button {
+    font-size: 0.875rem;
+  }
+
+  .task-frame-title {
+    font-size: 1.5rem;
+  }
+
+}
