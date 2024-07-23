@@ -235,6 +235,7 @@ button:active {
 .task-card-title {
   max-width: 200px;
   font-size: 1.25rem;
+  font-weight: bold;
   overflow: hidden;
   text-overflow: ellipsis;
 }
